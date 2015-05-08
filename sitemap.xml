@@ -2,7 +2,7 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://scm-q.github.io/eui/</loc>
-    <lastmod>2015-05-08T12:38:26+08:00</lastmod>
+    <lastmod>2015-05-08T16:40:25+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -10,7 +10,7 @@
   
   <url>
     <loc>http://scm-q.github.io/eui/about/</loc>
-    <lastmod>2015-05-08T12:38:26+08:00</lastmod>
+    <lastmod>2015-05-08T16:40:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -19,7 +19,7 @@
   
   <url>
     <loc>http://scm-q.github.io/eui/api/</loc>
-    <lastmod>2015-05-08T12:38:26+08:00</lastmod>
+    <lastmod>2015-05-08T16:40:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -28,7 +28,7 @@
   
   <url>
     <loc>http://scm-q.github.io/eui/components/</loc>
-    <lastmod>2015-05-08T12:38:26+08:00</lastmod>
+    <lastmod>2015-05-08T16:40:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -37,7 +37,7 @@
   
   <url>
     <loc>http://scm-q.github.io/eui/getting-started/</loc>
-    <lastmod>2015-05-08T12:38:26+08:00</lastmod>
+    <lastmod>2015-05-08T16:40:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -48,7 +48,7 @@
   
   <url>
     <loc>http://scm-q.github.io/eui/javascript/</loc>
-    <lastmod>2015-05-08T12:38:26+08:00</lastmod>
+    <lastmod>2015-05-08T16:40:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

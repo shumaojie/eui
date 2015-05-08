@@ -2893,7 +2893,7 @@ h1[id] {
     height: 803px;
     margin-left: -20px;
     font-family: "Helvetica Neue", sans-serif;
-    background-image: url("../../img/device-sprite.png");
+    background-image: url("../img/device-sprite.png");
     background-repeat: no-repeat;
     background-position: 0 0;
     background-size: 300%;
