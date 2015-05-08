@@ -1,0 +1,27 @@
+<p>序列化一个对象，在Ajax请求中提交的数据使用URL编码的查询字符串表示形式。
+如果shallow设置为true。嵌套对象不会被序列化，嵌套数组的值不会使用放括号在他们的key上。</p>
+
+<p>如果任何对象的某个属性值是一个函数，而不是一个字符串，该函数将被调用并且返回值后才会被序列化。</p>
+
+<p>此外，还接受 <a href="#serializeArray">serializeArray</a> 格式的数组，其中每个项都有 “name” 和 “value”属性。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">one</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">two</span><span class="o">:</span> <span class="mi">2</span> <span class="p">}})</span>
+<span class="c1">//=&gt; &quot;foo[one]=1&amp;foo[two]=2)&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">})</span>
+<span class="c1">//=&gt; &quot;ids[]=1&amp;ids[]=2&amp;ids[]=3&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">},</span> <span class="kc">true</span><span class="p">)</span>
+<span class="c1">//=&gt; &quot;ids=1&amp;ids=2&amp;ids=3&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nx">nested</span><span class="o">:</span> <span class="p">{</span> <span class="nx">will</span><span class="o">:</span> <span class="s1">&#39;not be ignored&#39;</span> <span class="p">}})</span>
+<span class="c1">//=&gt; &quot;foo=bar&amp;nested[will]=not+be+ignored&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nx">nested</span><span class="o">:</span> <span class="p">{</span> <span class="nx">will</span><span class="o">:</span> <span class="s1">&#39;be ignored&#39;</span> <span class="p">}},</span> <span class="kc">true</span><span class="p">)</span>
+<span class="c1">//=&gt; &quot;foo=bar&amp;nested=[object+Object]&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">id</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">})</span>
+<span class="c1">//=&gt; &quot;id=3&quot;</span></code></pre></div>
+
+
+

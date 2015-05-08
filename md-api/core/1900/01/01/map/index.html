@@ -1,0 +1,10 @@
+<p>遍历对象集合中的所有元素。通过遍历函数返回值形成一个新的集合对象。
+在遍历函数中<code>this</code>关键之指向当前循环的项（遍历函数中的第二个参数）。</p>
+
+<p>遍历中返回 <code>null</code>和<code>undefined</code>，遍历将结束。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// get text contents of all elements in collection</span>
+<span class="nx">elements</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span> <span class="p">}).</span><span class="nx">get</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span></code></pre></div>
+
+
+

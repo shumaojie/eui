@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="EUI: Build mobile apps with simple HTML, CSS, and JS components.">
+<meta name="author" content="SCM">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<title>
+  
+  JavaScript &middot; EUI
+  
+</title>
+
+<!-- Google Web Fonts -->
+<!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700%7COpen+Sans:400,300">-->
+
+<!-- Bootstrap core CSS -->
+
+<link href="../dist/css/bootstrap.css" rel="stylesheet">
+
+
+<!-- Mui theme -->
+
+
+<!-- Documentation extras -->
+
+<link href="../assets/css/src/pygments-manni.css" rel="stylesheet">
+<link href="../assets/css/src/anchor.css" rel="stylesheet">
+<link href="../assets/css/src/docs.css" rel="stylesheet">
+
+
+<!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+<![endif]-->
+
+<script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png">-->
+
+<!--<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36050008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>-->
+
+  </head>
+  <body>
+  <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">EUI</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li >
+          <a href="../getting-started/">起步</a>
+        </li>
+        <li >
+          <a href="../components/">CSS组件</a>
+        </li>
+        <li  class="active">
+        <a href="../javascript/">JavaScript</a>
+        </li>
+        <li >
+          <a href="../api/">API文档</a>
+        </li>
+        <li >
+        <a href="../about/">关于</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">论坛</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Docs page layout -->
+  <div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+      <h1>JavaScript</h1>
+      <p>常用JS方法使用介绍.</p>
+    </div>
+  </div>
+
+  <div class="container bs-docs-container">
+
+    <div class="row">
+      <div class="col-md-9" role="main">
+        
+    <!-- 页面初始化 -->
+<div class="bs-docs-section">
+    <h3 id="pageinit" class="page-header">页面初始化</h3>
+    <p>mui框架将很多功能配置都集中在$.init方法中，要使用某项功能，只需要在$.init方法中完成对应参数配置即可，目前支持在$.init方法中配置的功能包括：<a href="#subpage">创建子页面</a>、<a href="#closewindow">关闭页面</a>、<a href="#gesture">手势事件配置</a>、<a href="#preload">预加载</a>、<a href="#pullrefresh-down">下拉刷新</a>、<a href="#pullrefresh-up">上拉加载</a>。</p>
+    <p>在app开发中，若要使用<a href="http://www.html5plus.org/#specification">HTML5+扩展api</a>，必须等plusready事件发生后才能正常使用，mui将该事件封装成了<code>$.plusReady()</code>方法，涉及到HTML5+的api，建议都写在$.plusReady方法中。如下为打印当前页面URL的示例：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">plusReady</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;当前页面URL：&quot;</span><span class="o">+</span><span class="nx">plus</span><span class="p">.</span><span class="nx">webview</span><span class="p">.</span><span class="nx">currentWebview</span><span class="p">().</span><span class="nx">getURL</span><span class="p">());</span>
+<span class="p">});</span></code></pre></div>
+</div>
+
+    <!-- 打开新页面 -->
+<div class="bs-docs-section">
+    <h3 id="subpage" class="page-header">创建子页面</h3>
+    <p>
+        在mobile app开发过程中，经常遇到卡头卡尾的页面，此时若使用局部滚动，在android手机上会出现滚动不流畅的问题；
+        mui的解决思路是：将需要滚动的区域通过单独的webview实现，完全使用原生滚动。具体做法则是：将目标页面分解为主页面和内容页面，主页面显示卡头卡尾区域，比如顶部导航、底部选项卡等；内容页面显示具体需要滚动的内容，然后在主页面中调用$.init方法初始化内容页面。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">subpages</span><span class="o">:</span><span class="p">[{</span>
+        <span class="nx">url</span><span class="o">:</span><span class="nx">your</span><span class="o">-</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">url</span><span class="p">,</span><span class="c1">//子页面HTML地址，支持本地地址和网络地址</span>
+        <span class="nx">id</span><span class="o">:</span><span class="nx">your</span><span class="o">-</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">id</span><span class="p">,</span><span class="c1">//子页面标志</span>
+        <span class="nx">styles</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">top</span><span class="o">:</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="nx">position</span><span class="p">,</span><span class="c1">//子页面顶部位置</span>
+            <span class="nx">bottom</span><span class="o">:</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">bottom</span><span class="o">-</span><span class="nx">position</span><span class="p">,</span><span class="c1">//子页面底部位置</span>
+            <span class="nx">width</span><span class="o">:</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">width</span><span class="p">,</span><span class="c1">//子页面宽度，默认为100%</span>
+            <span class="nx">height</span><span class="o">:</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">height</span><span class="p">,</span><span class="c1">//子页面高度，默认为100%</span>
+            <span class="p">......</span>
+        <span class="p">},</span>
+        <span class="nx">extras</span><span class="o">:</span><span class="p">{}</span><span class="c1">//额外扩展参数</span>
+    <span class="p">}]</span>
+<span class="p">});</span></code></pre></div>
+
+    <p><strong>参数说明：</strong>styles表示窗口属性，参考<a href="http://www.dcloud.io/docs/api/zh_cn/webview.shtml#plus.webview.WebviewStyle">5+规范中的WebviewStyle</a>；特别注意，height和width两个属性,即使不设置，也默认按100%计算；因此若设置了top值为非"0px"的情况，建议同时设置bottom值，否则5+ runtime根据高度100%计算，可能会造成页面真实底部位置超出屏幕范围的情况；left、right同理。</p>
+
+
+    <p><strong>示例：</strong><strong class="text-danger">Hello mui的首页其实就是index.html加list.html合并而成的.</strong></p>
+
+    <div class="bs-callout bs-callout-danger">
+        <p>index.html的作用就是显示固定导航，list.html显示具体列表内容，列表项的滚动是在list.html所在webview中使用原生滚动，既保证了滚动条不会穿透顶部导航，符合app的体验，也保证了列表流畅滚动，解决了区域滚动卡顿的问题。 list.html就是index.html的子页面，创建代码比较简单，如下：</p>
+    </div>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">subpages</span><span class="o">:</span><span class="p">[{</span>
+        <span class="nx">url</span><span class="o">:</span><span class="s1">&#39;list.html&#39;</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;list.html&#39;</span><span class="p">,</span>
+        <span class="nx">styles</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">top</span><span class="o">:</span><span class="s1">&#39;45px&#39;</span><span class="p">,</span><span class="c1">//mui标题栏默认高度为45px；</span>
+            <span class="nx">bottom</span><span class="o">:</span><span class="s1">&#39;0px&#39;</span><span class="c1">//默认为0px，可不定义；</span>
+        <span class="p">}</span>
+    <span class="p">}]</span>
+<span class="p">});</span></code></pre></div>
+</div>
+
+    <!-- 打开新页面 -->
+<div class="bs-docs-section">
+    <h3 id="openwindow" class="page-header">打开新页面</h3>
+    <p>
+        做web app，一个无法避开的问题就是转场动画；web是基于链接构建的，从一个页面点击链接跳转到另一个页面，如果通过有刷新的打开方式，用户要面对一个空白的页面等待；如果通过无刷新的方式，用Javascript移入DOM节点（常见的SPA解决方案），会碰到很高的性能挑战：DOM节点繁多，页面太大，转场动画不流畅甚至导致浏览器崩溃；
+        mui的解决思路是：单webview只承载单个页面的dom，减少dom层级及页面大小；页面切换使用原生动画，将最耗性能的部分交给原生实现.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span><span class="k">new</span><span class="o">-</span><span class="nx">page</span><span class="o">-</span><span class="nx">url</span><span class="p">,</span>
+    <span class="nx">id</span><span class="o">:</span><span class="k">new</span><span class="o">-</span><span class="nx">page</span><span class="o">-</span><span class="nx">id</span><span class="p">,</span>
+    <span class="nx">styles</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">top</span><span class="o">:</span><span class="nx">newpage</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="nx">position</span><span class="p">,</span><span class="c1">//新页面顶部位置</span>
+        <span class="nx">bottom</span><span class="o">:</span><span class="nx">newage</span><span class="o">-</span><span class="nx">bottom</span><span class="o">-</span><span class="nx">position</span><span class="p">,</span><span class="c1">//新页面底部位置</span>
+        <span class="nx">width</span><span class="o">:</span><span class="nx">newpage</span><span class="o">-</span><span class="nx">width</span><span class="p">,</span><span class="c1">//新页面宽度，默认为100%</span>
+        <span class="nx">height</span><span class="o">:</span><span class="nx">newpage</span><span class="o">-</span><span class="nx">height</span><span class="p">,</span><span class="c1">//新页面高度，默认为100%</span>
+        <span class="p">......</span>
+    <span class="p">},</span>
+    <span class="nx">extras</span><span class="o">:</span><span class="p">{</span>
+        <span class="p">.....</span><span class="c1">//自定义扩展参数，可以用来处理页面间传值</span>
+    <span class="p">}</span>
+    <span class="nx">show</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">autoShow</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="c1">//页面loaded事件发生后自动显示，默认为true</span>
+        <span class="nx">aniShow</span><span class="o">:</span><span class="nx">animationType</span><span class="p">,</span><span class="c1">//页面显示动画，默认为”slide-in-right“；</span>
+        <span class="nx">duration</span><span class="o">:</span><span class="nx">animationTime</span><span class="c1">//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；</span>
+    <span class="p">},</span>
+    <span class="nx">waiting</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">autoShow</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="c1">//自动显示等待框，默认为true</span>
+        <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;正在加载...&#39;</span><span class="p">,</span><span class="c1">//等待对话框上显示的提示内容</span>
+        <span class="nx">options</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">width</span><span class="o">:</span><span class="nx">waiting</span><span class="o">-</span><span class="nx">dialog</span><span class="o">-</span><span class="nx">widht</span><span class="p">,</span><span class="c1">//等待框背景区域宽度，默认根据内容自动计算合适宽度</span>
+            <span class="nx">height</span><span class="o">:</span><span class="nx">waiting</span><span class="o">-</span><span class="nx">dialog</span><span class="o">-</span><span class="nx">height</span><span class="p">,</span><span class="c1">//等待框背景区域高度，默认根据内容自动计算合适高度</span>
+            <span class="p">......</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+    <p>
+        <strong>参数说明：</strong></p>
+    <ul>
+        <li>
+            styles : 表示窗口参数，参考<a href="http://www.dcloud.io/docs/api/zh_cn/webview.shtml#plus.webview.WebviewStyle">5+规范中的WebviewStyle</a>；
+            <div class="bs-callout bs-callout-danger" id="callout-overview-single-data">
+                特别注意，height和width两个属性,即使不设置，也默认按100%计算；因此若设置了top值为非"0px"的情况，建议同时设置bottom值，否则5+ runtime根据高度100%计算，可能会造成页面真实底部位置超出屏幕范围的情况；left、right同理。
+            </div>
+        </li>
+        <li>
+            extras : 新窗口的额外扩展参数，可用来处理页面间传值；例如：
+            <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">webview</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span><span class="s1">&#39;info.html&#39;</span><span class="p">,</span><span class="nx">extras</span><span class="o">:</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;mui&#39;</span><span class="p">}});</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">webview</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span></code></pre></div>
+            会输出"mui"字符串；注意：扩展参数仅在打开新窗口时有效，若目标窗口为预加载页面，则通过$.openWindow方法打开时传递的extras参数无效。</li>
+        <li>
+            show : 表示窗口显示控制。autoShow目标窗口loaded事件发生后，是否自动显示；若目标页面为预加载页面，则该参数无效；表示页面显示动画，比如从右侧划入、从下侧划入等，具体可参考<a href="http://www.dcloud.io/docs/api/zh_cn/webview.shtml#plus.webview.AnimationTypeShow">5+规范中的AnimationTypeShow</a>
+        </li>
+        <li>
+            waiting : 表示系统等待框；mui框架在打开新页面时等待框的处理逻辑为：显示等待框-->创建目标页面webview-->目标页面loaded事件发生-->关闭等待框；因此，只有当新页面为新创建页面（webview）时，会显示等待框，否则若为预加载好的页面，则直接显示目标页面，不会显示等待框。waiting中的参数：autoShow表示自动显示等待框，默认为true，若为false，则不显示等待框；注意：若显示了等待框，但目标页面不自动显示，则需在目标页面中通过如下代码关闭等待框<code>plus.nativeUI.closeWaiting();</code>。title表示等待框上的提示文字，options表示等待框显示参数，比如宽高、背景色、提示文字颜色等，具体可参考<a href="http://www.dcloud.io/docs/api/zh_cn/nativeUI.shtml#plus.nativeUI.WaitingOption">5+规范中的WaitingOption</a>.
+        </li>
+    </ul>
+    <p>
+        <strong>示例1：</strong><strong class="text-danger">Hello mui中，点击首页右上角的图标，会打开关于页面，实现代码如下:</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//tap为mui封装的单击事件，可参考手势事件章节</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;tap&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//打开关于页面</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">({</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;examples/info.html&#39;</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;info&#39;</span>
+    <span class="p">});</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>因没有传入styles参数，故默认全屏显示；也没有传入show参数，故使用slide-in-right动画，新页面从右侧滑入。</p>
+
+    <p>
+        <strong>示例2：</strong><strong class="text-danger">从A页面打开B页面，B页面为一个需要从服务端加载的列表页面，若在B页面loaded事件发生时就将其显示出来，因服务器数据尚未加载完毕，列表页面为空，用户体验不好；可通过如下方式改善用户体验（最好的用户体验应该是通过<a href="#preload">预加载</a>的方式）：第一步，B页面loaded事件发生后，不自动显示.</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//A页面中打开B页面，设置show的autoShow为false，则B页面在其loaded事件发生后，不会自动显示；</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;B.html&#39;</span><span class="p">,</span>
+    <span class="nx">show</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">autoShow</span><span class="o">:</span><span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+<p><strong class="text-danger">第二步，在B页面获取列表数据后，再关闭等待框、显示B页面</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//B页面onload从服务器获取列表数据；</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">//从服务器获取数据</span>
+    <span class="p">....</span>
+    <span class="c1">//业务数据获取完毕，并已插入当前页面DOM；</span>
+    <span class="c1">//注意：若为ajax请求，则需将如下代码放在处理完ajax响应数据之后；</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">plusReady</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//关闭等待框</span>
+        <span class="nx">plus</span><span class="p">.</span><span class="nx">nativeUI</span><span class="p">.</span><span class="nx">closeWaiting</span><span class="p">();</span>
+        <span class="c1">//显示当前页面</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">currentWebview</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">}</span></code></pre></div>
+</div>
+
+    <!-- 关闭页面  -->
+<div class="bs-docs-section">
+    <h3 id="closewindow" class="page-header">关闭页面</h3>
+    <p>mui框架将窗口关闭功能封装在<code>$.back</code>方法中，具体执行逻辑是：</p>
+    <ul>
+        <li>若当前webview为预加载页面，则hide当前webview；</li>
+        <li>否则，close当前webview；</li>
+    </ul>
+    <p>在mui框架中，有三种操作会触发页面关闭（执行$.back方法）：</p>
+    <ul>
+        <li>点击包含<code>.mui-action-back</code>类的控件</li>
+        <li>在页面上，向右快速滑动</li>
+        <li>Android手机按下back按键</li>
+    </ul>
+    <p>hbuilder中敲<code>mheader</code>生成的代码块，会自动生成带有返回导航箭头的标题栏，点击返回箭头可关闭当前页面，原因就是因为该返回箭头包含<code>.mui-action-back</code>类，代码如下：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;mui-bar mui-bar-nav&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;mui-action-back mui-icon mui-icon-left-nav mui-pull-left&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;mui-title&quot;</span><span class="nt">&gt;</span>标题<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/header&gt;</span></code></pre></div>
+    
+    <p>若希望在顶部导航栏之外的其它区域添加关闭页面的控件，只需要在对应控件上添加<code>.mui-action-back</code>类即可，如下为一个关闭按钮示例：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">class=</span><span class="s">&#39;mui-btn mui-btn-danger mui-action-back&#39;</span><span class="nt">&gt;</span>关闭<span class="nt">&lt;/button&gt;</span></code></pre></div>
+
+    <p>mui框架封装的页面右滑关闭功能，默认未启用，若要使用右滑关闭功能，需要在<code>$.init();</code>方法中设置swipeBack参数，如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">swipeBack</span><span class="o">:</span><span class="kc">true</span> <span class="c1">//启用右滑关闭功能</span>
+<span class="p">});</span></code></pre></div>
+
+<p>mui框架默认会监听Android手机的back按键，然后执行页面关闭逻辑；若不希望mui自动处理back按键，可通过如下方式关闭mui的back按键监听；</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">keyEventBind</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">backbutton</span><span class="o">:</span> <span class="kc">false</span>  <span class="c1">//关闭back按键监听</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>除了如上三种操作外，也可以直接调用<code>$.back()</code>方法，执行窗口关闭逻辑；</p>
+    <p><code>$.back()</code>仅处理窗口逻辑，若希望在窗口关闭之前再处理一些其它业务逻辑，则可将业务逻辑抽象成一个具体函数，然后注册为$.init方法的beforeback参数;beforeback的执行逻辑为：</p>
+    <ul>
+        <li>执行beforeback参数对应的函数若返回false，则不再执行<code>$.back()</code>方法；</li>
+        <li>否则（返回true或无返回值），继续执行<code>$.back()</code>方法；</li>
+    </ul>
+    <p>示例：从列表打开详情页面，从详情页面再返回后希望刷新列表界面，此时可注册beforeback参数，然后通过<a href="#customevent">自定义事件</a>通知列表页面刷新数据，示例代码如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">beforeback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//获得列表界面的webview</span>
+        <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">plus</span><span class="p">.</span><span class="nx">webview</span><span class="p">.</span><span class="nx">getWebviewById</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">);</span>
+        <span class="c1">//触发列表界面的自定义事件（refresh）,从而进行数据刷新</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span><span class="s1">&#39;refresh&#39;</span><span class="p">);</span>
+            <span class="c1">//返回true，继续页面关闭逻辑</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>注意：beforeback的执行返回必须是同步的（阻塞模式），若使用nativeUI这种异步js（非阻塞模式），则可能会出现意想不到的结果；比如：通过<code>plus.nativeUI.confirm()</code>弹出确认框，可能用户尚未选择，页面已经返回了（beforeback同步执行完毕，无返回值，继续执行<code>$.back()</code>方法，nativeUI不会阻塞js进程）：在这种情况下，若要自定义业务逻辑，就需要复写<code>$.back</code>方法了；如下为一个自定义示例，每次都需要用户确认后，才会关闭当前页面</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//备份$.back，$.back已将窗口关闭逻辑封装的比较完善（预加载及父子窗口），因此最好复用$.back</span>
+<span class="kd">var</span> <span class="nx">old_back</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">back</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">back</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">btn</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;确定&quot;</span><span class="p">,</span><span class="s2">&quot;取消&quot;</span><span class="p">];</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;确认关闭当前窗口？&#39;</span><span class="p">,</span><span class="s1">&#39;Hello MUI&#39;</span><span class="p">,</span><span class="nx">btn</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+            <span class="c1">//执行mui封装好的窗口关闭逻辑；</span>
+            <span class="nx">old_back</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span></code></pre></div>
+
+    <p>
+    <div class="bs-callout bs-callout-danger" id="callout-overview-single-data">
+        自定义关闭逻辑时，一定要重写$.back，不能简单通过addEventListener增加back按键监听，
+        因为addEventListener只会增加新的执行逻辑，老的监听逻辑依然会执行；
+    </div>
+</div>
+
+    <!-- AJAX  -->
+<div class="bs-docs-section">
+        <h3 id="ajax" class="page-header">Ajax</h3>
+        <p>mui框架基于htm5plus的<a href="http://www.html5plus.org/#specification#/specification/XMLHttpRequest.html">XMLHttpRequest</a>，封装了常用的Ajax函数，支持GET、POST请求方式，支持返回json、xml、html、text、script数据类型；
+            本着极简的设计原则，mui提供了$.ajax方法，并在$.ajax方法基础上，进一步简化出最常用的$.get()、$.getJSON()、$.post()三个方法。
+        </p>
+        <p>
+            $.ajax()方法通过HTTP请求加载远程数据，是mui框架底层Ajax的实现方法，使用方法：<code>$.ajax(url[,setting])</code>，其中url表示请求发送的目标地址，setting是一个json对象，支持的参数主要包括：
+        <table class="table table-bordered table-striped js-options-table">
+            <tr>
+                <td>参数</td>
+                <td>类型</td>
+                <td>描述</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>Object</td>
+                <td>发送到服务器的数据，可以是json对象或字符串</td>
+            </tr>
+            <tr>
+                <td>dataType</td>
+                <td>String</td>
+                <td>预期服务器返回的数据类型；如果不指定，mui将自动根据HTTP包的MIME头信息自动判断；支持设置的dataType可选值：
+                    <ul>
+                        <li>"xml": 返回XML文档</li>
+                        <li>"html": 返回纯文本HTML信息；</li>
+                        <li>"script": 返回纯文本JavaScript代码</li>
+                        <li>"json": 返回JSON数据 </li>
+                        <li>"text": 返回纯文本字符串</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>error</td>
+                <td>Function</td>
+                <td>请求失败时触发的函数，该函数接收三个参数：
+                    <ul>
+                        <li>xhr：xhr实例对象，类型是XMLHttpRequest</li>
+                        <li>type：错误描述，类型是String，可取值除了'null'外，其它可能值："timeout", "error", "abort", "parsererror"</li>
+                        <li>errorThrown：可捕获的异常对象，类型是String</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>success</td>
+                <td>Function</td>
+                <td>请求成功时触发的回调函数，该函数接收三个参数：
+                    <ul>
+                        <li>data：服务器返回的响应数据，类型可以是json对象、xml对象、字符串等；</li>
+                        <li>textStatus：状态描述，参数类型是String，默认值为'success'</li>
+                        <li>xhr：xhr实例对象，类型是XMLHttpRequest</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>timeout</td>
+                <td>Number</td>
+                <td>请求超时时间（毫秒），默认值为0，表示永不超时；若超过设置的超时时间(非0的情况)，依然未收到服务器响应，则触发error回调</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>String</td>
+                <td>请求方式，目前仅支持'GET'和'POST'，默认为'GET'方式</td>
+            </tr>
+        </table>
+        <p style="margin-top:20px">
+            代码示例：如下为通过post方式向某服务器发送鉴权登录的代码片段
+        </p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://server-name/login.php&#39;</span><span class="p">,{</span>
+    <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">username</span><span class="o">:</span><span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="nx">password</span><span class="o">:</span><span class="s1">&#39;password&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">dataType</span><span class="o">:</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="c1">//服务器返回json格式数据</span>
+    <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;post&#39;</span><span class="p">,</span><span class="c1">//HTTP请求类型</span>
+    <span class="nx">timeout</span><span class="o">:</span><span class="mi">10000</span><span class="p">,</span><span class="c1">//超时时间设置为10秒；</span>
+    <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="c1">//服务器返回响应，根据响应结果，分析是否登录成功；</span>
+        <span class="p">...</span>
+    <span class="p">},</span>
+    <span class="nx">error</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span><span class="nx">type</span><span class="p">,</span><span class="nx">errorThrown</span><span class="p">){</span>
+        <span class="c1">//异常处理；</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+        <p>
+            <code>$.post()</code>方法是对<code>$.ajax()</code>的一个简化方法，直接使用POST请求方式向服务器发送数据、且不处理timeout和异常（若需处理异常及超时，请使用<code>$.ajax()</code>方法），使用方法：
+            <code>$.post(url[,data][,success][,dataType])</code>，如上登录鉴权代码换成<code>$.post()</code>后，代码更为简洁，如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;http://server-name/login.php&#39;</span><span class="p">,{</span>
+    <span class="nx">username</span><span class="o">:</span><span class="s1">&#39;username&#39;</span><span class="p">,</span>
+    <span class="nx">password</span><span class="o">:</span><span class="s1">&#39;password&#39;</span>
+    <span class="p">},</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="c1">//服务器返回响应，根据响应结果，分析是否登录成功；</span>
+         <span class="p">...</span>
+    <span class="p">},</span><span class="s1">&#39;json&#39;</span>
+<span class="p">);</span></code></pre></div>
+
+        <p><code>$.get()</code>方法和<code>$.post()</code>方法类似，只不过是直接使用GET请求方式向服务器发送数据、且不处理timeout和异常（若需处理异常及超时，请使用<code>$.ajax()</code>方法），使用方法：
+            <code>$.get(url[,data][,success][,dataType])</code>，如下为获得某服务器新闻列表的代码片段，服务器以json格式返回数据列表
+        </p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://server-name/list.php&#39;</span><span class="p">,{</span><span class="nx">category</span><span class="o">:</span><span class="s1">&#39;news&#39;</span><span class="p">},</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="c1">//获得服务器响应</span>
+    <span class="p">...</span>
+    <span class="p">},</span><span class="s1">&#39;json&#39;</span>
+<span class="p">);</span></code></pre></div>
+
+        <p>
+            如上<code>$.get()</code>方法和如下<code>$.ajax()</code>方法效果是一致的：</p>
+        </p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://server-name/list.php&#39;</span><span class="p">,{</span>
+    <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">category</span><span class="o">:</span><span class="s1">&#39;news&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">dataType</span><span class="o">:</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="c1">//服务器返回json格式数据</span>
+    <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="c1">//HTTP请求类型</span>
+    <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="c1">//获得服务器响应</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+        <p ><code>$.getJSON()</code>方法是在<code>$.get()</code>方法基础上的更进一步简化，限定返回json格式的数据，其它参数和<code>$.get()</code>方法一致，使用方法：
+            <code>$.get(url[,data][,success])</code>，如上获得新闻列表的代码换成<code>$.getJSON()</code>方法后，更为简洁，如下：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">$.getJSON(&#39;http://server-name/list.php&#39;,{category:&#39;news&#39;},function(data){
+    //获得服务器响应
+    ...
+});</code></pre></div>
+</div>
+
+    
+<!-- 手势事件 -->
+<div class="bs-docs-section">
+    <h3 id="gesture" class="page-header">手势事件</h3>
+    <p>在开发移动端的应用时，会用到很多的手势操作，比如滑动、长按等，为了方便开放者快速集成这些手势，mui内置了常用的手势事件，目前支持的手势事件见如下列表：</p>
+    <table class="table table-bordered table-striped js-options-table">
+        <tbody>
+        <tr>
+            <th>分类</th>
+            <th>参数</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td rowspan="2">点击</td>
+            <td>tap</td>
+            <td>单击屏幕</td>
+        </tr>
+        <tr>
+            <td>doubletap</td>
+            <td>双击屏幕</td>
+        </tr>
+        <tr>
+            <td rowspan="3">长按</td>
+            <td>longtap</td>
+            <td>长按屏幕</td>
+        </tr>
+        <tr>
+            <td>hold</td>
+            <td>按住屏幕</td>
+        </tr>
+        <tr>
+            <td>release</td>
+            <td>离开屏幕</td>
+        </tr>
+        <tr>
+            <td rowspan="4">滑动</td>
+            <td>swipeleft</td>
+            <td>向左滑动</td>
+        </tr>
+        <tr>
+            <td>swiperight</td>
+            <td>向右滑动</td>
+        </tr>
+        <tr>
+            <td>swipeup</td>
+            <td>向上滑动</td>
+        </tr>
+        <tr>
+            <td>swipedown</td>
+            <td>向下滑动</td>
+        </tr>
+        <tr>
+            <td rowspan="3">拖动</td>
+            <td>dragstart</td>
+            <td>开始拖动</td>
+        </tr>
+        <tr>
+            <td>drag</td>
+            <td>拖动中</td>
+        </tr>
+        <tr>
+            <td>dragend</td>
+            <td>拖动结束</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <h3 class="page-header">手势事件配置</h3>
+    <p>根据使用频率，mui默认会监听部分手势事件，如点击、滑动事件；为了开发出更高性能的moble App，mui支持用户根据实际业务需求，通过$.init方法中的gestureConfig参数，配置具体需要监听的手势事件，。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">gestureConfig</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">tap</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//默认为true</span>
+        <span class="nx">doubletap</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//默认为false</span>
+        <span class="nx">longtap</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//默认为false</span>
+        <span class="nx">swipe</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//默认为true</span>
+        <span class="nx">drag</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//默认为true</span>
+        <span class="nx">hold</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="c1">//默认为false，不监听</span>
+        <span class="nx">release</span><span class="o">:</span><span class="kc">false</span><span class="c1">//默认为false，不监听</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+    <div class="bs-callout bs-callout-danger" id="callout-overview-single-data">
+        <strong>注意:</strong>dragstart、drag、dragend共用drag开关，swipeleft、swiperight、swipeup、swipedown共用swipe开关.
+    </div>
+
+    <h3 class="page-header">事件监听</h3>
+    <p>同标准click事件一样，上述手势事件支持添加到任意DOM对象上，如下为一个示例：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">elem.addEventListener(&quot;swipeleft&quot;,function(){
+    console.log(&quot;你正在向左滑动&quot;);
+});</code></pre></div>
+</div>
+
+    <!-- 预加载  -->
+<div class="bs-docs-section">
+    <h3 id="preload" class="page-header">预加载</h3>
+    <p>所谓的预加载技术就是在用户尚未触发页面跳转时，提前创建目标页面，这样当用户跳转时，就可以立即进行页面切换，节省创建新页面的时间，提升app使用体验。mui提供两种方式实现页面预加载。</p>
+    <p>方式一：通过$.init方法中的preloadPages参数进行配置.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">preloadPages</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">url</span><span class="o">:</span><span class="nx">prelaod</span><span class="o">-</span><span class="nx">page</span><span class="o">-</span><span class="nx">url</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span><span class="nx">preload</span><span class="o">-</span><span class="nx">page</span><span class="o">-</span><span class="nx">id</span><span class="p">,</span>
+        <span class="nx">styles</span><span class="o">:</span><span class="p">{},</span><span class="c1">//窗口参数</span>
+        <span class="nx">extras</span><span class="o">:</span><span class="p">{},</span><span class="c1">//自定义扩展参数</span>
+        <span class="nx">subpages</span><span class="o">:</span><span class="p">[{},{}]</span><span class="c1">//预加载页面的子页面</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>该种方案使用简单、可预加载多个页面，但不会返回预加载每个页面的引用，若要获得对应webview引用，还需要通过<code>plus.webview.getWebviewById</code>方式获得；另外，因为$.init是异步执行，执行完$.init方法后立即获得对应webview引用，可能会失败，例如如下代码：
+    </p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">preloadPages</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">url</span><span class="o">:</span><span class="s1">&#39;list.html&#39;</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;list&#39;</span>
+    <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">plus</span><span class="p">.</span><span class="nx">webview</span><span class="p">.</span><span class="nx">getWebviewByid</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">);</span><span class="c1">//这里可能返回空；</span></code></pre></div>
+
+    <p>方式二：通过$.preload方法预加载.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">preload</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span><span class="k">new</span><span class="o">-</span><span class="nx">page</span><span class="o">-</span><span class="nx">url</span><span class="p">,</span>
+    <span class="nx">id</span><span class="o">:</span><span class="k">new</span><span class="o">-</span><span class="nx">page</span><span class="o">-</span><span class="nx">id</span><span class="p">,</span><span class="c1">//默认使用当前页面的url作为id</span>
+    <span class="nx">styles</span><span class="o">:</span><span class="p">{},</span><span class="c1">//窗口参数</span>
+    <span class="nx">extras</span><span class="o">:</span><span class="p">{}</span><span class="c1">//自定义扩展参数</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>通过<code>$.preload()</code>方法预加载，可立即返回对应webview的引用，但一次仅能预加载一个页面；若需加载多个webview，则需多次调用<code>$.preload()</code>方法；
+    </p>
+    <p>如上两种方案，各有优劣，需根据具体业务场景灵活选择；
+    </p>
+
+    <!-- 下拉刷新 -->
+    <h3 id="pullrefresh-down" class="page-header">下拉刷新</h3>
+    <p>
+        为实现下拉刷新功能，大多H5框架都是通过DIV模拟下拉回弹动画，在低端android手机上，DIV动画经常出现卡顿现象（特别是图文列表的情况）；
+        mui通过双webview解决这个DIV的拖动流畅度问题；拖动时，拖动的不是div，而是一个完整的webview（子webview），回弹动画使用原生动画；在iOS平台，H5的动画已经比较流畅，故依然使用H5方案。两个平台实现虽有差异，但mui经过封装，可使用一套代码实现下拉刷新。</p>
+    <p>主页面内容比较简单，只需要创建子页面即可：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">subpages</span><span class="o">:</span><span class="p">[{</span>
+        <span class="nx">url</span><span class="o">:</span><span class="nx">pullrefresh</span><span class="o">-</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">url</span><span class="p">,</span><span class="c1">//下拉刷新内容页面地址</span>
+        <span class="nx">id</span><span class="o">:</span><span class="nx">pullrefresh</span><span class="o">-</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">id</span><span class="p">,</span><span class="c1">//内容页面标志</span>
+        <span class="nx">styles</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">top</span><span class="o">:</span><span class="nx">subpage</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="nx">position</span><span class="p">,</span><span class="c1">//内容页面顶部位置,需根据实际页面布局计算，若使用标准mui导航，顶部默认为48px；</span>
+            <span class="p">.....</span><span class="c1">//其它参数定义</span>
+        <span class="p">}</span>
+     <span class="p">}]</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>
+        内容页面需按照如下DOM结构构建：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!--下拉刷新容器--&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;refreshContainer&quot;</span> <span class="na">class=</span><span class="s">&quot;mui-content mui-scroll-wrapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!--数据列表--&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;mui-table-view mui-table-view-chevron&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+    <p>其次，通过$.init方法中pullRefresh参数配置下拉刷新各项参数，如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">pullRefresh</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">container</span><span class="o">:</span><span class="s2">&quot;#refreshContainer&quot;</span><span class="p">,</span><span class="c1">//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等</span>
+        <span class="nx">down</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">contentdown</span> <span class="o">:</span> <span class="s2">&quot;下拉可以刷新&quot;</span><span class="p">,</span><span class="c1">//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容</span>
+            <span class="nx">contentover</span> <span class="o">:</span> <span class="s2">&quot;释放立即刷新&quot;</span><span class="p">,</span><span class="c1">//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容</span>
+            <span class="nx">contentrefresh</span> <span class="o">:</span> <span class="s2">&quot;正在刷新...&quot;</span><span class="p">,</span><span class="c1">//可选，正在刷新状态时，下拉刷新控件上显示的标题内容</span>
+            <span class="nx">callback</span> <span class="o">:</span><span class="nx">pullfresh</span><span class="o">-</span><span class="kd">function</span> <span class="c1">//必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>
+        最后，根据具体业务编写刷新函数，需要注意的是，加载完新数据后，需要执行endPulldownToRefresh()方法；</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">pullfresh</span><span class="o">-</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//业务逻辑代码，比如通过ajax从服务器获取新数据；</span>
+    <span class="p">......</span>
+    <span class="c1">//注意，加载完新数据后，必须执行如下代码，注意：若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#pullrefreshContainer&#39;</span><span class="p">).</span><span class="nx">pullRefresh</span><span class="p">().</span><span class="nx">endPulldownToRefresh</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+    <!-- 上拉加载 -->
+    <h3 id="pullrefresh-up" class="page-header">上拉加载</h3>
+    <p>mui的上拉加载实现比较简单，检测5+ runtime提供的滚动条滚动到底事件（plusscrollbottom），显示“正在加载”提示-->开始加载业务数据-->隐藏"正在加载"提示。使用方式类似下拉刷新，首先、通过$.init方法中pullRefresh参数配置上拉加载各项参数，如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">pullRefresh</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">container</span><span class="o">:</span><span class="nx">refreshContainer</span><span class="p">,</span><span class="c1">//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等</span>
+        <span class="nx">up</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">contentrefresh</span> <span class="o">:</span> <span class="s2">&quot;正在加载...&quot;</span><span class="p">,</span><span class="c1">//可选，正在加载状态时，上拉加载控件上显示的标题内容</span>
+            <span class="nx">contentnomore</span><span class="o">:</span><span class="s1">&#39;没有更多数据了&#39;</span><span class="p">,</span><span class="c1">//可选，请求完毕若没有更多数据时显示的提醒内容；</span>
+            <span class="nx">callback</span> <span class="o">:</span><span class="nx">pullfresh</span><span class="o">-</span><span class="kd">function</span> <span class="c1">//必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>其次，根据具体业务编写加载函数，需要注意的是，加载完新数据后，需要执行endPullupToRefresh()方法；</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">pullfresh</span><span class="o">-</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//业务逻辑代码，比如通过ajax从服务器获取新数据；</span>
+    <span class="p">......</span>
+    <span class="c1">//注意，加载完新数据后，必须执行如下代码，true表示没有更多数据了，两个注意事项：</span>
+    <span class="c1">//1、若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后</span>
+    <span class="c1">//2、注意this的作用域，若存在匿名函数，需将this复制后使用，参考hello mui中的代码示例；</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">endPullupToRefresh</span><span class="p">(</span><span class="kc">true</span><span class="o">|</span><span class="kc">false</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+    <p><strong>注意：</strong>
+    <ul>
+        <li>因为使用的是滚动到底事件，因此若当前页面内容过少，没有滚动条的话，就不会触发上拉加载</li>
+        <li>多次上拉加载后，若已没有更多数据可加载时，调用<code>this.endPullupToRefresh(true);</code>，之后滚动条滚动到底时，将不再显示“上拉显示更多”的提示语，而显示“没有更多数据了”的提示语；</li>
+        <li>若实际业务中，有重新触发上拉加载的需求（比如当前类别已无更多数据，但切换到另外一个类别后，应支持继续上拉加载），此时调用上拉加载的重置函数即可，如下代码：</li>
+    </ul></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//pullup-container为在$.init方法中配置的pullRefresh节点中的container参数；</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#pullup-container&#39;</span><span class="p">).</span><span class="nx">pullRefresh</span><span class="p">().</span><span class="nx">refresh</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span></code></pre></div>
+</div>
+
+    <!-- 输入增强  -->
+<div class="bs-docs-section">
+    <h3 id="input" class="page-header">输入增强</h3>
+    <p>mui目前提供的输入增强包括：快速删除和语音输入两项功能。要删除输入框中的内容，使用输入法键盘上的删除按键，只能逐个删除字符，mui提供了快速删除能力，只需要在对应input控件上添加<code>.mui-input-clear</code>类，当input控件中有内容时，右侧会有一个删除图标，点击会清空当前input的内容；另外，为了方便快速输入，mui集成了HTML5+的语音输入，只需要在对应input控件上添加<code>.mui-input-speech</code>类，就会在该控件右侧显示一个语音输入的图标，点击会启用科大讯飞语音输入界面。</p>
+</div>
+
+    <!-- 开关事件  -->
+<div class="bs-docs-section">
+    <h3 id="switch" class="page-header">开关事件</h3>
+    <p>mui提供了开关控件样式，点击滑动两种手势都可以对开关控件进行操作，在开关控件进行切换时，会触发toggle事件,通过事件的detail.isActive属性可以判断当前开关状态。可通过监听toggle事件，在开关切换时执行特定业务逻辑。如下为使用示例：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mySwitch&quot;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;toggle&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">isActive</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;你启动了开关&quot;</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;你关闭了开关&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})</span></code></pre></div>
+
+    <p>若要获得当前开关状态，可通过判断当前开关控件是否包含<code>.mui-active</code>类来实现，若包含，则为打开状态，否则即为关闭状态；如下为代码示例：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">isActive</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mySwitch&quot;</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s2">&quot;mui-active&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">isActive</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;打开状态&quot;</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;关闭状态&quot;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+    <p>若使用js打开、关闭开关控件，可使用switch插件的<code>toggle()</code>方法，如下为示例代码：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mySwitch&quot;</span><span class="p">).</span><span class="k">switch</span><span class="p">().</span><span class="nx">toggle</span><span class="p">();</span></code></pre></div>
+</div>
+
+    <!-- slide事件  -->
+<div class="bs-docs-section">
+    <h3 id="slide" class="page-header">slide事件</h3>
+    <p>mui提供了图片轮播、可拖动式图文表格、可拖动式选项卡、左右滑动9宫格组件，这些组件都用到了mui框架的slide插件，有较多共同点。首先，Dom内容构造基本相同，都必须有一个<code>.mui-slider</code>的父容器；其次，当拖动切换显示内容时，均会触发slide事件（可拖动式选项卡在点击选项卡标题时，也会触发slide事件），通过该事件的detail.slideNumber参数可以获得当前显示项的索引（第一项索引为0，第二项为1，以此类推），利用该事件，可在显示内容切换时，动态处理一些业务逻辑。</p>
+    <p>如下为一个可拖动式选项卡示例，为提高页面加载速度，页面加载时，仅显示第一个选项卡的内容，第二、第三选项卡内容为空。</p>
+    
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--选项卡标题区--&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-indicator mui-segmented-control mui-segmented-control-inverted&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;mui-control-item&quot;</span> <span class="na">href=</span><span class="s">&quot;#item1&quot;</span><span class="nt">&gt;</span>待办公文<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;mui-control-item&quot;</span> <span class="na">href=</span><span class="s">&quot;#item2&quot;</span><span class="nt">&gt;</span>已办公文<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;mui-control-item&quot;</span> <span class="na">href=</span><span class="s">&quot;#item3&quot;</span><span class="nt">&gt;</span>全部公文<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-progress-bar mui-col-xs-4&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-group&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!--第一个选项卡内容区--&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;item1&quot;</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item mui-control-content mui-active&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;mui-table-view&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;</span>待办公文1<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;</span>待办公文2<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;</span>待办公文3<span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="c">&lt;!--第二个选项卡内容区，页面加载时为空--&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;item2&quot;</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item mui-control-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="c">&lt;!--第三个选项卡内容区，页面加载时为空--&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;item3&quot;</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item mui-control-content&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+    
+    <p>当切换到第二、第三个选项卡时，再动态获取相应内容进行显示：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">item2Show</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span><span class="nx">item3Show</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span><span class="c1">//子选项卡是否显示标志</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.mui-slider&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;slide&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">slideNumber</span> <span class="o">===</span> <span class="mi">1</span><span class="o">&amp;&amp;!</span><span class="nx">item2Show</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//切换到第二个选项卡</span>
+    <span class="c1">//根据具体业务，动态获得第二个选项卡内容；</span>
+    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="p">....</span>
+    <span class="c1">//显示内容</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;item2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">content</span><span class="p">;</span>
+    <span class="c1">//改变标志位，下次直接显示</span>
+    <span class="nx">item2Show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">slideNumber</span> <span class="o">===</span> <span class="mi">2</span><span class="o">&amp;&amp;!</span><span class="nx">item3Show</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//切换到第三个选项卡</span>
+    <span class="c1">//根据具体业务，动态获得第三个选项卡内容；</span>
+    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="p">....</span>
+    <span class="c1">//显示内容</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;item3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">content</span><span class="p">;</span>
+    <span class="c1">//改变标志位，下次直接显示</span>
+    <span class="nx">item3Show</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+    
+    <p>图片轮播、可拖动式图文表格等均可按照同样方式监听内容变化，比如我们可以在图片轮播界面显示当前正在看的是第几张图片：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.mui-slider&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;slide&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//注意slideNumber是从0开始的；</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;info&quot;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&quot;你正在看第&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">slideNumber</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;张图片&quot;</span><span class="p">;</span>
+<span class="p">});</span></code></pre></div>
+</div>
+
+    <!-- 自定义事件  -->
+<div class="bs-docs-section">
+    <h3 id="customevent" class="page-header">自定义事件</h3>
+    <p>用户开发应用中会大量使用事件功能。除了浏览器内置的事件及mui框架内置的事件（比如手势事件）外，mui同时支持用户触发和绑定自定义事件。通过自定义事件，用户可以轻松实现页面间数据传递。</p>
+    <p><strong>监听自定义事件</strong></p>
+    <p>添加自定义事件监听操作和标准js事件监听类似，可直接通过window对象添加，如下：</p>
+    
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;customEvent&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+    <span class="c1">//通过event.detail可获得传递过来的参数内容</span>
+    <span class="p">....</span>
+<span class="p">});</span></code></pre></div>
+    
+    <p><strong>触发自定义事件</strong></p>
+    <p>通过$.fire方法可触发目标窗口的自定义事件：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">targetPage</span><span class="p">,</span><span class="s1">&#39;customEvent&#39;</span><span class="p">,{</span>
+    <span class="c1">//自定义事件参数</span>
+<span class="p">});</span></code></pre></div>
+
+    <p><strong>示例：</strong>假设如下场景：从新闻列表页面进入新闻详情页面，新闻详情页面为共用页面，通过传递新闻ID通知详情页面需要显示具体哪个新闻，详情页面再动态向服务器请求数据，mui要实现类似需求可通过如下步骤实现：
+    <ul>
+        <li>
+            在列表页面中预加载详情页面（假设为detail.html）
+        </li>
+        <li>
+            列表页面在点击新闻标题时，首先，获得该新闻id，触发详情页面的newsId事件，并将新闻id作为事件参数传递过去；然后再打开详情页面；
+        </li>
+        <li>详情页面监听newsId自定义事件</li>
+    </ul>
+    </p>
+    <p>列表页面代码如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//初始化预加载详情页面</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">preloadPages</span><span class="o">:</span><span class="p">[{</span>
+        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;detail.html&#39;</span><span class="p">,</span>
+        <span class="nx">url</span><span class="o">:</span><span class="s1">&#39;detail.html&#39;</span>
+    <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">detailPage</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="c1">//添加列表项的点击事件</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.mui-content&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;tap&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    <span class="c1">//获得详情页面</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">detailPage</span><span class="p">){</span>
+        <span class="nx">detailPage</span> <span class="o">=</span> <span class="nx">plus</span><span class="p">.</span><span class="nx">webview</span><span class="p">.</span><span class="nx">getWebviewById</span><span class="p">(</span><span class="s1">&#39;detail.html&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">//触发详情页面的newsId事件</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">detailPage</span><span class="p">,</span><span class="s1">&#39;newsId&#39;</span><span class="p">,{</span>
+        <span class="nx">id</span><span class="o">:</span><span class="nx">id</span>
+    <span class="p">});</span>
+    <span class="c1">//打开详情页面</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">({</span>
+        <span class="nx">id</span><span class="o">:</span><span class="s1">&#39;detail.html&#39;</span>
+    <span class="p">});</span>
+    <span class="p">});</span></code></pre></div>
+
+<p>详情页面代码如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//添加newId自定义事件监听</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;newsId&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+    <span class="c1">//获得事件参数</span>
+    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="c1">//根据id向服务器请求新闻详情</span>
+    <span class="p">.....</span>
+<span class="p">});</span></code></pre></div>
+</div>
+
+    <!-- 图片轮播插件  -->
+<div class="bs-docs-section">
+    <h3 id="plugin-slider" class="page-header">图片轮播</h3>
+    <p>mui框架内置了图片轮播插件，通过该插件封装的JS API，用户可以设定是否自动轮播及轮播周期，如下为代码示例：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//获得slider插件对象</span>
+<span class="kd">var</span> <span class="nx">gallery</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.mui-slider&#39;</span><span class="p">);</span>
+<span class="nx">gallery</span><span class="p">.</span><span class="nx">slider</span><span class="p">({</span>
+    <span class="nx">interval</span><span class="o">:</span><span class="mi">5000</span><span class="c1">//自动轮播周期，若为0则不自动播放，默认为0；</span>
+<span class="p">});</span></code></pre></div>
+
+    <p>因此若希望图片轮播不要自动播放，而是用户手动滑动才切换，只需要通过如上方法，将slideshowDelay参数设为0即可。</p>
+    <p>若要跳转到第x张图片，则可以使用图片轮播插件的gotoItem方法，例如：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//获得slider插件对象</span>
+<span class="kd">var</span> <span class="nx">gallery</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.mui-slider&#39;</span><span class="p">);</span>
+<span class="nx">gallery</span><span class="p">.</span><span class="nx">slider</span><span class="p">().</span><span class="nx">gotoItem</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span><span class="c1">//跳转到第index张图片，index从0开始；</span></code></pre></div>
+
+    <p>图片轮播涉及的另外一个问题：是否支持循环播放，比如有1、2、3、4四张图片，从第1张图片起，依次向左滑动切换图片，当切换到第4张图片时，继续向左滑动，接下来会有两种效果：
+    <ul>
+        <li>支持循环：左滑，直接切换到第1张图片；</li>
+        <li>不支持循环：左滑，无反应，继续显示第4张图片，用户若要显示第1张图片，必须连续向右滑动切换到第1张图片；</li>
+    </ul>
+    当显示第1张图片时，继续右滑是否显示第4张图片，是同样问题；这个问题的实现需要通过<code>.mui-slider-loop</code>类及DOM节点来控制；若不支持循环，代码比较简单，如下：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;1.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;2.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;3.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;4.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+    <p>若要支持循环，则需要在<code>.mui-slider-group</code>节点上增加<code>.mui-slider-loop</code>类，同时需要重复增加2张图片，图片顺序变为：4、1、2、3、4、1，代码示例如下：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-group mui-slider-loop&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!--支持循环，需要重复图片节点--&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item mui-slider-item-duplicate&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;4.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;1.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;2.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;3.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;4.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+        <span class="c">&lt;!--支持循环，需要重复图片节点--&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-slider-item mui-slider-item-duplicate&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;1.jpg&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+</div>
+
+    <!-- 侧滑菜单  -->
+<div class="bs-docs-section">
+    <h3 id="plugin-offcanvas" class="page-header">侧滑导航</h3>
+    <p>mui提供了两种侧滑导航实现：webview模式和div模式，两种模式各有优劣，适用于不同的场景。</p>
+
+    <h4 class="page-header" id="offcanvas-webview">webview模式</h4>
+    <p>主页面和菜单内容在不同的webview中，两个页面根据内容需求分别组织DOM结构，mui对其DOM结构无特殊要求，故其有如下优点：</p>
+    <ul>
+        <li>菜单内容是单独的webview，故可被多个页面复用；</li>
+        <li>菜单内容在单独的webview中，菜单区域的滚动不影响主界面，故可使用原生滚动，滚动更为流畅；</li>
+    </ul>
+    <p>另一方面，webview模式也有其缺点：</p>
+    <ul>
+        <li>不支持拖动手势（跟手拖动）；</li>
+        <li>主页面、菜单不同webview实现，因此若需交互（如：点击菜单触发主页面内容变化），需使用<a href="#customevent">自定义事件</a>实现跨webview通讯；</li>
+    </ul>
+    <h4 class="page-header" id="offcanvas-div">div模式</h4>
+    <p>
+        主页面和菜单内容在同一个webview下，嵌套在特定结构的div中，通过div的移动动画模拟菜单移动；故该模式有如下优点：
+    </p>
+    <ul>
+        <li>支持拖动手势（跟手拖动）；</li>
+        <li>主页面、菜单在一个页面中，可通过JS轻松实现两者交互（如：点击菜单触发主页面内容变化），没有跨webview通讯的烦恼；</li>
+    </ul>
+    <p>另一方面，div模式也有其缺点：</p>
+    <ul>
+        <li>不支持菜单内容在多页面的复用，需每个页面都生成对应的菜单节点；</li>
+        <li>主界面和菜单内容的滚动互不影响，因此会使用div区域滚动，在低端Android手机且滚动内容较多时，可能会稍显卡顿；</li>
+    </ul>
+    <p>div模式支持不同的动画效果，每种动画效果需遵从不同的DOM构造；下面我们以右滑菜单为例（左滑菜单仅需将菜单父节点上的<code>mui-off-canvas-left</code>换成<code>mui-off-canvas-right</code>即可），说明每种动画对应的DOM结构。</p>
+    <strong>动画1：主界面移动、菜单不动</strong>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- 侧滑导航根容器 --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-off-canvas-wrap mui-draggable&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 菜单容器 --&gt;</span>
+    <span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">&quot;mui-off-canvas-left&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll-wrapper&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll&quot;</span><span class="nt">&gt;</span>
+                <span class="c">&lt;!-- 菜单具体展示内容 --&gt;</span>
+                ...
+                <span class="nt">&lt;div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/aside&gt;</span>
+    <span class="c">&lt;!-- 主页面容器 --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-inner-wrap&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- 主页面标题 --&gt;</span>
+        <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;mui-bar mui-bar-nav&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;mui-icon mui-action-menu mui-icon-bars mui-pull-left&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+            <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;mui-title&quot;</span><span class="nt">&gt;</span>标题<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;/header&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-content mui-scroll-wrapper&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll&quot;</span><span class="nt">&gt;</span>
+                <span class="c">&lt;!-- 主界面具体展示内容 --&gt;</span>
+                ...
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+    <strong>动画2：主界面不动、菜单移动</strong>
+    <p>该种动画要求的DOM结构和动画1的DOM结构基本相同，唯一差别就是需在侧滑导航根容器class上增加一个<code>mui-slide-in</code>类</p>
+    <strong>动画3：主界面、菜单同时移动</strong>
+    <p>该种动画要求的DOM结构较特殊，需将菜单容器放在主页面容器之下</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- 侧滑导航根容器 --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-off-canvas-wrap mui-draggable&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 主页面容器 --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-inner-wrap&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- 菜单容器 --&gt;</span>
+        <span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">&quot;mui-off-canvas-left&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll-wrapper&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll&quot;</span><span class="nt">&gt;</span>
+                    <span class="c">&lt;!-- 菜单具体展示内容 --&gt;</span>
+                    ...
+                    <span class="nt">&lt;div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/aside&gt;</span>
+        <span class="c">&lt;!-- 主页面标题 --&gt;</span>
+        <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;mui-bar mui-bar-nav&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;mui-icon mui-action-menu mui-icon-bars mui-pull-left&quot;</span><span class="nt">&gt;&lt;/a&gt;</span>
+            <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;mui-title&quot;</span><span class="nt">&gt;</span>标题<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;/header&gt;</span>
+        <span class="c">&lt;!-- 主页面内容容器 --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-content mui-scroll-wrapper&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;mui-scroll&quot;</span><span class="nt">&gt;</span>
+                <span class="c">&lt;!-- 主界面具体展示内容 --&gt;</span>
+                ...
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+    <p>mui支持多种方式显示div模式的侧滑菜单：1、在主界面向右拖动（drag）；2、点击含有<code>mui-action-menu</code>类的控件；3、Android手机按menu键；4、通过JS API触发，如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.mui-off-canvas-wrap&#39;</span><span class="p">).</span><span class="nx">offCanvas</span><span class="p">(</span><span class="s1">&#39;show&#39;</span><span class="p">);</span></code></pre></div>
+
+    <p>同样，mui支持多种方式关闭div模式的侧滑菜单：1、在手机屏幕上任意位置向左拖动（drag）；2、点击主界面内任意位置；3、Android手机按menu键；4、Android手机按back键；5、通过JS API触发，如下：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.mui-off-canvas-wrap&#39;</span><span class="p">).</span><span class="nx">offCanvas</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">);</span></code></pre></div>
+
+    <style>
+        .docs-content h4{
+            font-size: 1.15em;
+        }
+    </style>
+
+</div>
+
+    <!-- 弹出菜单  -->
+<div class="bs-docs-section">
+    <h3 id="plugin-popover" class="page-header">弹出菜单</h3>
+    <p>mui框架内置了弹出菜单插件，弹出菜单显示内容不限，但必须包裹在一个含<code>.mui-popover</code>类的div中，如下即为一个弹出菜单内容：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;popover&quot;</span> <span class="na">class=</span><span class="s">&quot;mui-popover&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;mui-table-view&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Item1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Item2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Item3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Item4<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;mui-table-view-cell&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Item5<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+    <p>要显示、隐藏如上菜单，mui推荐使用锚点方式，例如：</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#popover&quot;</span> <span class="na">class=</span><span class="s">&quot;mui-btn mui-btn-primary mui-btn-block&quot;</span><span class="nt">&gt;</span>打开弹出菜单<span class="nt">&lt;/a&gt;</span></code></pre></div>
+
+    <p>点击如上定义的按钮，即可显示弹出菜单，再次点击弹出菜单之外的其他区域，均可关闭弹出菜单；这种使用方式最为简洁。</p>
+    <p>若希望通过js的方式控制弹出菜单，则通过如下一个方法即可：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">//传入toggle参数，用户也无需关心当前是显示还是隐藏状态，mui会自动识别处理；</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.mui-popover&#39;</span><span class="p">).</span><span class="nx">popover</span><span class="p">(</span><span class="s1">&#39;toggle&#39;</span><span class="p">);</span></code></pre></div>
+</div>
+
+    <!-- 遮罩蒙版  -->
+<div class="bs-docs-section">
+    <h3 id="mask" class="component-title">遮罩蒙版</h3>
+    <p class="component-description">在popover、侧滑菜单等界面，经常会用到蒙版遮罩；比如popover弹出后，除popover控件外的其它区域都会遮罩一层蒙版，用户点击蒙版不会触发蒙版下方的逻辑，而会关闭popover同时关闭蒙版；再比如侧滑菜单界面，菜单划出后，除侧滑菜单之外的其它区域都会遮罩一层蒙版，用户点击蒙版会关闭侧滑菜单同时关闭蒙版。
+    </p>
+    <p class="component-description">遮罩蒙版常用的操作包括：创建、显示、关闭，如下代码：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">createMask</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span><span class="c1">//callback为用户点击蒙版时自动执行的回调；</span>
+<span class="nx">mask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span><span class="c1">//显示遮罩</span>
+<span class="nx">mask</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span><span class="c1">//关闭遮罩</span></code></pre></div>
+
+<p class="component-description"><strong>注意：</strong>关闭遮罩仅会关闭，不会销毁；关闭之后可以再次调用<code>mask.show();</code>打开遮罩；</p>
+<p class="component-description">mui默认的蒙版遮罩使用<code>.mui-backdrop</code>类定义（如下代码），若需自定义遮罩效果，只需覆盖定义<code>.mui-backdrop</code>即可；</p>
+
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.mui-backdrop</span> <span class="p">{</span>
+    <span class="k">position</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span>
+    <span class="k">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">bottom</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">z-index</span><span class="o">:</span> <span class="m">998</span><span class="p">;</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,.</span><span class="m">3</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+</div>
+
+
+
+      </div>
+      
+      <div class="col-md-3" role="complementary">
+        <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+          <ul class="nav bs-docs-sidenav">
+            
+                <li class="active"><a href="#pageinit">页面初始化</a></li>
+<li><a href="#subpage">创建子页面</a></li>
+<li><a href="#openwindow">打开新页面</a></li>
+<li><a href="#closewindow">关闭页面</a></li>
+<li><a href="#ajax">AJAX</a></li>
+<li><a href="#gesture">手势事件</a></li>
+<li><a href="#preload">预加载</a></li>
+<li><a href="#pullrefresh-down">下拉刷新</a></li>
+<li><a href="#pullrefresh-up">上拉加载</a></li>
+<li><a href="#input">输入增强</a></li>
+<li><a href="#switch">开关事件</a></li>
+<li><a href="#slide">slide事件</a></li>
+<li><a href="#customevent">自定义事件</a></li>
+<li><a href="#plugin-slider">图片轮播</a></li>
+<li>
+    <a href="#plugin-offcanvas">侧滑菜单</a>
+    <ul class="nav">
+        <li><a href="#offcanvas-webview">webview模式</a></li>
+        <li><a href="#offcanvas-div">div模式</a></li>
+    </ul>
+</li>
+<li><a href="#plugin-popover">弹出菜单</a></li>
+<li><a href="#mask">遮罩蒙版</a></li>
+            
+          </ul>
+          <a class="back-to-top" href="#top">
+            返回顶部
+          </a>
+        </nav>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Footer
+================================================== -->
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="bs-docs-social">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=scm-Q&amp;repo=eui&amp;type=watch&amp;count=true" width="100" height="20"></iframe>
+      </li>
+    </ul>
+</div>
+
+
+  <p>本项目源码受
+    <a href="https://github.com/scm-Q/eui/blob/master/LICENSE" data-ignore="push">MIT</a>
+    开源协议保护，文档受
+    <a href="https://github.com/scm-Q/eui/blob/master/docs/LICENSE" data-ignore="push">CC BY 3.0</a>
+    开源协议保护.
+  </p>
+
+  <ul class="bs-docs-footer-links text-muted">
+    <li>当前版本： 1.1.6</li>
+    <li>&middot;</li>
+    <li><a href="https://github.com/scm-Q/eui/issues" data-ignore="push">Issues</a></li>
+    <li>&middot;</li>
+    <li><a href="https://github.com/scm-Q/eui/releases" data-ignore="push">Releases</a></li>
+  </ul>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../dist/js/jquery-2.1.1.js"></script>
+
+
+<script src="../dist/js/bootstrap.js"></script>
+
+
+
+
+<script src="../assets/js/vendor/holder.js"></script>
+
+<script src="../assets/js/vendor/ZeroClipboard.min.js"></script>
+
+<script src="../assets/js/vendor/anchor.js"></script>
+
+<script src="../assets/js/src/application.js"></script>
+
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!---->
+<!--<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>-->
+
+<!-- Analytics
+================================================== -->
+<!--<script>
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>-->
+
+
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<p>从元素本身开始，逐级向上级元素匹配，并返回最先匹配selector的元素。
+如果给定context节点参数，那么只匹配该节点的后代元素。
+这个方法与<a href="#parents"><code>parents(selector)</code></a>有点相像，但它只返回最先匹配的祖先元素。</p>
+
+<p>如果参数是一个Zepto对象集合或者一个元素，结果必须匹配给定的元素而不是选择器。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;input[type=text]&#39;</span><span class="p">)</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)</span></code></pre></div>
+
+
+

@@ -1,0 +1,13 @@
+<p>遍历数组元素或以key-value值对方式遍历对象。回调函数返回 <code>false</code> 时停止遍历。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;item %d is: %s&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;zepto.js&#39;</span><span class="p">,</span> <span class="nx">size</span><span class="o">:</span> <span class="s1">&#39;micro&#39;</span> <span class="p">}</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">hash</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;%s: %s&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+

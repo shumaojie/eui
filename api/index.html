@@ -1,0 +1,3107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="EUI: Build mobile apps with simple HTML, CSS, and JS components.">
+<meta name="author" content="SCM">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<title>
+  
+  API &middot; EUI
+  
+</title>
+
+<!-- Google Web Fonts -->
+<!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700%7COpen+Sans:400,300">-->
+
+<!-- Bootstrap core CSS -->
+
+<link href="../dist/css/bootstrap.css" rel="stylesheet">
+
+
+<!-- Mui theme -->
+
+
+<!-- Documentation extras -->
+
+<link href="../assets/css/src/pygments-manni.css" rel="stylesheet">
+<link href="../assets/css/src/anchor.css" rel="stylesheet">
+<link href="../assets/css/src/docs.css" rel="stylesheet">
+
+
+<!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+<![endif]-->
+
+<script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png">-->
+
+<!--<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36050008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>-->
+
+  </head>
+  <body>
+  <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">EUI</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li >
+          <a href="../getting-started/">起步</a>
+        </li>
+        <li >
+          <a href="../components/">CSS组件</a>
+        </li>
+        <li >
+        <a href="../javascript/">JavaScript</a>
+        </li>
+        <li  class="active">
+          <a href="../api/">API文档</a>
+        </li>
+        <li >
+        <a href="../about/">关于</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">论坛</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Docs page layout -->
+  <div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+      <h1>API</h1>
+      <p>EUI的JavaScript库是基于Zepto.js的扩展， 它与jquery有着类似的api。 如果你会用jquery，那么你也会用zepto。</p>
+    </div>
+  </div>
+
+  <div class="container bs-docs-container">
+
+    <div class="row">
+      <div class="col-md-9" role="main">
+        <hr>
+<h2 id="core">Core methods</h2>
+
+
+<article class=method id="core-z">
+  <h3>$()
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$(selector, [context]) ⇒ collection
+$(&lt;Zepto collection&gt;) ⇒ same collection
+$(&lt;DOM nodes&gt;) ⇒ collection
+$(htmlString) ⇒ collection
+$(htmlString, attributes) ⇒ collection [v1.0]
+Zepto(function($){ ... })
+</code></pre>
+  
+  <p>通过执行css选择器，包装dom节点，或者通过一个html字符串创建多个元素 来创建一个Zepto集合对象。</p>
+
+<p>Zepto集合是一个类似数组的对象，它具有链式方法来操作它指向的DOM节点，
+除了$(<code>Zepto</code>)对象上的直接方法外(如<code>$.extend</code>)，文档对象中的所有方法都是集合方法。</p>
+
+<p>如果选择器中存在content参数(css选择器，dom，或者Zepto集合对象)，
+那么只在所给的节点背景下进行css选择器；
+这个功能和使用<code>$(context).find(selector)</code>是一样的。</p>
+
+<p>当给定一个html字符串片段来创建一个dom节点时。也可以通过给定一组属性映射来创建节点。
+最快的创建但元素，使用<code>&lt;div&gt;</code> 或 <code>&lt;div/&gt;</code>形式。</p>
+
+<p>当一个函数附加在 <code>DOMContentLoaded</code> 事件的处理流程中。如果页面已经加载完毕，这个方法将会立即被执行。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>  <span class="c1">//=&gt; all DIV elements on the page</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#foo&#39;</span><span class="p">)</span> <span class="c1">//=&gt; element with ID &quot;foo&quot;</span>
+
+<span class="c1">// create element:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;p&gt;Hello&lt;/p&gt;&quot;</span><span class="p">)</span> <span class="c1">//=&gt; the new P element</span>
+<span class="c1">// create element with attributes:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;p /&gt;&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">text</span><span class="o">:</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span><span class="s2">&quot;greeting&quot;</span><span class="p">,</span> <span class="nx">css</span><span class="o">:</span><span class="p">{</span><span class="nx">color</span><span class="o">:</span><span class="s1">&#39;darkblue&#39;</span><span class="p">}</span> <span class="p">})</span>
+<span class="c1">//=&gt; &lt;p id=greeting style=&quot;color:darkblue&quot;&gt;Hello&lt;/p&gt;</span>
+
+<span class="c1">// execute callback when the page is ready:</span>
+<span class="nx">Zepto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Ready to Zepto!&#39;</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+<p class=compat>
+  <a href="http://api.jquery.com/category/selectors/jquery-selector-extensions/">jQuery CSS 扩展</a> are not supported.
+ 然而，可选的“selector”模块有限提供了支持几个最常用的伪选择器，而且可以被丢弃，与现有的代码或插件的兼容执行。
+</p>
+
+
+
+
+<p class=compat>
+如果$变量尚未定义，Zepto只设置了全局变量$指向它本身。允许您同时使用的Zepto和有用的遗留代码，
+例如，prototype.js。只要首先加载Prototype，Zepto将不会覆盖Prototype的 <code>$</code>  函数。
+Zepto将始终设置全局变量<code>Zepto</code>指向它本身。
+</p>
+
+
+</article>
+
+<article class=method id="core-z-camelCase">
+  <h3>$.camelCase
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.camelCase(string) ⇒ string
+</code></pre>
+  
+  <p>将一组字符串变成“骆驼”命名法的新字符串，如果该字符已经是“骆驼”命名法，则不变化。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">camelCase</span><span class="p">(</span><span class="s1">&#39;hello-there&#39;</span><span class="p">)</span> <span class="c1">//=&gt; &quot;helloThere&quot;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">camelCase</span><span class="p">(</span><span class="s1">&#39;helloThere&#39;</span><span class="p">)</span>  <span class="c1">//=&gt; &quot;helloThere&quot;</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-contains">
+  <h3>$.contains
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.contains(parent, node) ⇒ boolean
+</code></pre>
+  
+  <p>检查父节点是否包含给定的dom节点，如果两者是相同的节点，则返回 false。</p>
+
+</article>
+
+<article class=method id="core-z-each">
+  <h3>$.each
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.each(collection, function(index, item){ ... }) ⇒ collection
+</code></pre>
+  
+  <p>遍历数组元素或以key-value值对方式遍历对象。回调函数返回 <code>false</code> 时停止遍历。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;item %d is: %s&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;zepto.js&#39;</span><span class="p">,</span> <span class="nx">size</span><span class="o">:</span> <span class="s1">&#39;micro&#39;</span> <span class="p">}</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">hash</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;%s: %s&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-extend">
+  <h3>$.extend
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.extend(target, [source, [source2, ...]]) ⇒ target
+$.extend(true, target, [source, ...]) ⇒ target [v1.0]
+</code></pre>
+  
+  <p>通过源对象扩展目标对象的属性，源对象属性将覆盖目标对象属性。</p>
+
+<p>默认情况下为，复制为浅拷贝（浅复制）。如果第一个参数为<code>true</code>表示深度拷贝（深度复制）。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;patridge&#39;</span> <span class="p">},</span>
+    <span class="nx">source</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">two</span><span class="o">:</span> <span class="s1">&#39;turtle doves&#39;</span> <span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">source</span><span class="p">)</span>
+<span class="c1">//=&gt; { one: &#39;patridge&#39;,</span>
+<span class="c1">//     two: &#39;turtle doves&#39; }</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-fn">
+  <h3>$.fn
+  
+   
+  </h3>
+  
+  
+  <p><code>Zepto.fn</code>是一个对象，它拥有Zepto对象上所有可用的方法，如 <a href="#addClass"><code>addClass()</code></a>，
+ <a href="#attr"><code>attr()</code></a>，和其它方法。
+在这个对象添加一个方法，所有的Zepto对象上都能用到该方法。</p>
+
+<p>这里有一个实现 Zepto 的 <a href="#empty"><code>empty()</code></a>方法的例子：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">empty</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="p">})</span>
+<span class="p">}</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-grep">
+  <h3>$.grep
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.grep(items, function(item){ ... }) ⇒ array
+</code></pre>
+  
+  <p>获取一个新数组，新数组只包含回调函数中返回 ture 的数组项。</p>
+
+</article>
+
+<article class=method id="core-z-inArray">
+  <h3>$.inArray
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.inArray(element, array, [fromIndex]) ⇒ number
+</code></pre>
+  
+  <p>返回数组中指定元素的索引值（注：以0为基数），如果没有找到该元素则返回<code>-1</code>。</p>
+
+<p>注：[fromIndex] 参数可选，表示从哪个索引值开始向后查找。</p>
+
+</article>
+
+<article class=method id="core-z-isArray">
+  <h3>$.isArray
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.isArray(object) ⇒ boolean
+</code></pre>
+  
+  <p>如果object是array，则返回ture。</p>
+
+</article>
+
+<article class=method id="core-z-isFunction">
+  <h3>$.isFunction
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.isFunction(object) ⇒ boolean
+</code></pre>
+  
+  <p>如果object是function，则返回ture。</p>
+
+</article>
+
+<article class=method id="core-z-isPlainObject">
+  <h3>$.isPlainObject
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.isPlainObject(object) ⇒ boolean
+</code></pre>
+  
+  <p>测试对象是否是“纯粹”的对象，这个对象是通过 对象常量（"{}&ldquo;） 或者 <code>new Object</code> 创建的，
+如果是，则返回true。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">isPlainObject</span><span class="p">({})</span>         <span class="c1">// =&gt; true</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isPlainObject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// =&gt; true</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isPlainObject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">)</span>   <span class="c1">// =&gt; false</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isPlainObject</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span>     <span class="c1">// =&gt; false</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-isWindow">
+  <h3>$.isWindow
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.isWindow(object) ⇒ boolean
+</code></pre>
+  
+  <p>如果object参数是否为一个window对象，那么返回true。这在处理iframe时非常有用，
+因为每个iframe都有它们自己的window对象，
+使用常规方法<code>obj === window</code>校验这些objects的时候会失败。</p>
+
+</article>
+
+<article class=method id="core-z-map">
+  <h3>$.map
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.map(collection, function(item, index){ ... }) ⇒ collection
+</code></pre>
+  
+  <p>通过遍历集合中的元素，返回通过迭代函数的全部结果，
+（注：一个新数组）<code>null</code> 和 <code>undefined</code> 将被过滤掉。</p>
+
+</article>
+
+<article class=method id="core-z-parseJSON">
+  <h3>$.parseJSON
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.parseJSON(string) ⇒ object
+</code></pre>
+  
+  <p>原生<code>JSON.parse</code>方法的别名。
+（注：接受一个标准格式的 JSON 字符串，并返回解析后的 JavaScript 对象。）</p>
+
+</article>
+
+<article class=method id="core-z-trim">
+  <h3>$.trim
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.trim(string) ⇒ string
+</code></pre>
+  
+  <p>删除字符串首尾的空白符。类似String.prototype.trim()。</p>
+
+</article>
+
+<article class=method id="core-z-type">
+  <h3>$.type
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.type(object) ⇒ string
+</code></pre>
+  
+  <p>获取JavaScript 对象的类型。可能的类型有：
+null undefined boolean number string function array date regexp object error.</p>
+
+<p>对于其它对象，它只是简单报告为“object”，
+如果你想知道一个对象是否是一个javascript普通对象，使用<a href="#$.isPlainObject">isPlainObject</a>.</p>
+
+</article>
+
+<article class=method id="core-add">
+  <h3>add
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>add(selector, [context]) ⇒ self
+</code></pre>
+  
+  <p>添加元素到当前匹配的元素集合中。如果给定content参数，
+将只在content元素中进行查找，否则在整个document中查找。</p>
+
+</article>
+
+<article class=method id="core-addClass">
+  <h3>addClass
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>addClass(name) ⇒ self
+addClass(function(index, oldClassName){ ... }) ⇒ self
+</code></pre>
+  
+  <p>为每个匹配的元素添加指定的<code>class</code>类名。多个<code>class</code>类名使用空格分隔。</p>
+
+</article>
+
+<article class=method id="core-after">
+  <h3>after
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>after(content) ⇒ self
+</code></pre>
+  
+  <p>在每个匹配的元素后插入内容（注：外部插入）。
+内容可以为html字符串，dom节点，或者节点组成的数组。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form label&#39;</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;A note below the label&lt;/p&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-append">
+  <h3>append
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>append(content) ⇒ self
+</code></pre>
+  
+  <p>在每个匹配的元素末尾插入内容（注：内部插入）。
+内容可以为html字符串，dom节点，或者节点组成的数组。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;new list item&lt;/li&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-appendTo">
+  <h3>appendTo
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>appendTo(target) ⇒ self
+</code></pre>
+  
+  <p>将匹配的元素插入到目标元素的末尾（注：内部插入）。
+这个有点像 <a href="#append">append</a>，但是插入的目标与其相反。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;new list item&lt;/li&gt;&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-attr">
+  <h3>attr
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>attr(name) ⇒ string
+attr(name, value) ⇒ self
+attr(name, function(index, oldValue){ ... }) ⇒ self
+attr({ name: value, name2: value2, ... }) ⇒ self
+</code></pre>
+  
+  <p>读取或设置dom的属性。如果没有给定value参数，则读取对象集合中第一个元素的属性值。
+当给定了value参数。则设置对象集合中所有元素的该属性的值。当value参数为null，
+那么这个属性将被移除(类似<a href="#removeAttr">removeAttr</a>)，多个属性可以通过对象键值对的方式进行设置。</p>
+
+<p>要读取DOM的属性如 <code>checked</code>和<code>selected</code>, 使用<a href="#prop">prop</a>。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">)</span>             <span class="c1">//=&gt; read value</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="s1">&#39;/create&#39;</span><span class="p">)</span>  <span class="c1">//=&gt; set value</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>       <span class="c1">//=&gt; remove attribute</span>
+
+<span class="c1">// multiple attributes:</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">({</span>
+  <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;/create&#39;</span><span class="p">,</span>
+  <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;post&#39;</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-before">
+  <h3>before
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>before(content) ⇒ self
+</code></pre>
+  
+  <p>在匹配每个元素的前面插入内容（注：外部插入）。
+内容可以为html字符串，dom节点，或者节点组成的数组。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">).</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;See the following table:&lt;/p&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-children">
+  <h3>children
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>children([selector]) ⇒ collection
+</code></pre>
+  
+  <p>获得每个匹配元素集合元素的直接子元素，如果给定selector，那么返回的结果中只包含符合css选择器的元素。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ol&#39;</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;*:nth-child(2n)&#39;</span><span class="p">)</span>
+<span class="c1">//=&gt; every other list item from every ordered list</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-clone">
+  <h3>clone
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>clone() ⇒ collection
+</code></pre>
+  
+  <p>通过深度克隆来复制集合中的所有元素。</p>
+
+<p class=compat>
+ 此方法不会将数据和事件处理程序复制到新的元素。这点和jquery中利用一个参数来确定是否复制数据和事件处理不相同。
+</p>
+
+
+</article>
+
+<article class=method id="core-closest">
+  <h3>closest
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>closest(selector, [context]) ⇒ collection
+closest(collection) ⇒ collection [v1.0]
+closest(element) ⇒ collection [v1.0]
+</code></pre>
+  
+  <p>从元素本身开始，逐级向上级元素匹配，并返回最先匹配selector的元素。
+如果给定context节点参数，那么只匹配该节点的后代元素。
+这个方法与<a href="#parents"><code>parents(selector)</code></a>有点相像，但它只返回最先匹配的祖先元素。</p>
+
+<p>如果参数是一个Zepto对象集合或者一个元素，结果必须匹配给定的元素而不是选择器。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;input[type=text]&#39;</span><span class="p">)</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-concat">
+  <h3>concat
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>concat(nodes, [node2, ...]) ⇒ self
+</code></pre>
+  
+  <p>添加元素到一个Zepto对象集合形成一个新数组。如果参数是一个数组，那么这个数组中的元素将会合并到Zepto对象集合中。</p>
+
+<p class=compat>
+  这是一个Zepto提供的方法，不是jquey的API 。
+</p>
+
+
+</article>
+
+<article class=method id="core-contents">
+  <h3>contents
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>contents() ⇒ collection
+</code></pre>
+  
+  <p>获得每个匹配元素集合元素的子元素，包括文字和注释节点。（备注：.contents()和.children()方法类似，只不过前者包括文本节点以及jQuery对象中产生的HTML元素。）</p>
+
+</article>
+
+<article class=method id="core-css">
+  <h3>css
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>css(property) ⇒ value
+css([property1, property2, ...]) ⇒ object [v1.1]
+css(property, value) ⇒ self
+css({ property: value, property2: value2, ... }) ⇒ self
+</code></pre>
+  
+  <p>读取或设置DOM元素的css属性。当value参数不存在的时候，返回对象集合中第一个元素的css属性。
+当value参数存在时，设置对象集合中每一个元素的对应css属性。</p>
+
+<p>多个属性可以通过传递一个属性名组成的数组一次性获取。多个属性可以利用对象键值对的方式进行设置。</p>
+
+<p>当value为空(空字符串，null 或 undefined)，那个css属性将会被移出。当value参数为一个无单位的数字，
+如果该css属性需要单位，“px”将会自动添加到该属性上。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">)</span>          <span class="c1">// read property</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;#369&#39;</span><span class="p">)</span>  <span class="c1">// set property</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>      <span class="c1">// remove property</span>
+
+<span class="c1">// set multiple properties:</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span> <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;#8EE&#39;</span><span class="p">,</span> <span class="nx">fontSize</span><span class="o">:</span> <span class="mi">28</span> <span class="p">})</span>
+
+<span class="c1">// read multiple properties:</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">([</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">,</span> <span class="s1">&#39;fontSize&#39;</span><span class="p">])[</span><span class="s1">&#39;fontSize&#39;</span><span class="p">]</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-data">
+  <h3>data
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>data(name) ⇒ value
+data(name, value) ⇒ self
+</code></pre>
+  
+  <p>读取或写入dom的 <code>data-*</code> 属性。行为有点像 <a href="#attr">attr</a>，但是属性名称前面加上 <code>data-</code>。</p>
+
+<p>当读取属性值时，会有下列转换：
+<span class=version>v1.0+</span></p>
+
+<ul>
+<li>&ldquo;true&rdquo;, &ldquo;false&rdquo;, and &ldquo;null&rdquo; 被转换为相应的类型；</li>
+<li>数字值转换为实际的数字类型；;</li>
+<li>JSON值将会被解析，如果它是有效的JSON;</li>
+<li>其它的一切作为字符串返回。.</li>
+</ul>
+
+
+<p class=compat>
+ Zepto 基本实现`data()`只能存储字符串。如果你要存储任意对象，请引入可选的“data”模块到你构建的Zepto中。
+</p>
+
+
+</article>
+
+<article class=method id="core-each">
+  <h3>each
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>each(function(index, item){ ... }) ⇒ self
+</code></pre>
+  
+  <p>遍历一个对象集合每个元素。在迭代函数中，<code>this</code>关键字指向当前项(作为函数的第二个参数传递)。
+如果迭代函数返回 <code>false</code>，遍历结束。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form input&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;input %d is: %o&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-empty">
+  <h3>empty
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>empty() ⇒ self
+</code></pre>
+  
+  <p>清空对象集合中每个元素的DOM内容。</p>
+
+</article>
+
+<article class=method id="core-eq">
+  <h3>eq
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>eq(index) ⇒ collection
+</code></pre>
+  
+  <p>从当前对象集合中获取给定索引值（注：以0为基数）的元素。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1">//=&gt; only the first list item</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">//=&gt; only the last list item</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-filter">
+  <h3>filter
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>filter(selector) ⇒ collection
+filter(function(index){ ... }) ⇒ collection [v1.0]
+</code></pre>
+  
+  <p>过滤对象集合，返回对象集合中满足css选择器的项。如果参数为一个函数，
+函数返回有实际值得时候，元素才会被返回。在函数中， <code>this</code> 关键字指向当前的元素。</p>
+
+<p>与此相反的功能，查看<a href="#not">not</a>.</p>
+
+</article>
+
+<article class=method id="core-find">
+  <h3>find
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>find(selector) ⇒ collection
+find(collection) ⇒ collection [v1.0]
+find(element) ⇒ collection [v1.0]
+</code></pre>
+  
+  <p>在当对象前集合内查找符合CSS选择器的每个元素的后代元素。</p>
+
+<p>如果给定Zepto对象集合或者元素，过滤它们，只有当它们在当前Zepto集合对象中时，才回被返回。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myform&#39;</span><span class="p">)</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;input, select&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-first">
+  <h3>first
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>first() ⇒ collection
+</code></pre>
+  
+  <p>获取当前对象集合中的第一个元素。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">first</span><span class="p">()</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-forEach">
+  <h3>forEach
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>forEach(function(item, index, array){ ... }, [context])
+</code></pre>
+  
+  <p>遍历对象集合中每个元素，有点类似 <a href="#each">each</a>，但是遍历函数的参数不一样，
+当函数返回 <code>false</code> 的时候，遍历不会停止。</p>
+
+<p class=compat>
+ 这是一个Zepto提供的方法，不是jquery的API。
+</p>
+
+
+</article>
+
+<article class=method id="core-get">
+  <h3>get
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>get() ⇒ array
+get(index) ⇒ DOM node
+</code></pre>
+  
+  <p>从当前对象集合中获取所有元素或单个元素。当index参数不存在的时，以普通数组的方式返回所有的元素。
+当指定index时，只返回该置的元素。这点与<a href="#eq">eq</a>不同，该方法返回的是DOM节点，<em>不是</em> Zepto对象集合。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">)</span>
+<span class="nx">elements</span><span class="p">.</span><span class="nx">get</span><span class="p">()</span>   <span class="c1">//=&gt; get all headings as an array</span>
+<span class="nx">elements</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">//=&gt; get first heading node</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-has">
+  <h3>has
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>has(selector) ⇒ collection
+has(node) ⇒ collection
+</code></pre>
+  
+  <p>判断当前对象集合的子元素是否有符合选择器的元素，或者是否包含指定的DOM节点，如果有，则返回新的对象集合，
+该对象过滤掉不含有选择器匹配元素或者不含有指定DOM节点的对象。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ol &gt; li&#39;</span><span class="p">).</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;a[href]&#39;</span><span class="p">)</span>
+<span class="c1">//=&gt; get only LI elements that contain links</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-hasClass">
+  <h3>hasClass
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>hasClass(name) ⇒ boolean
+</code></pre>
+  
+  <p>检查对象集合中是否有元素含有指定的class。</p>
+
+</article>
+
+<article class=method id="core-height">
+  <h3>height
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>height() ⇒ number
+height(value) ⇒ self
+height(function(index, oldHeight){ ... }) ⇒ self
+</code></pre>
+  
+  <p>获取对象集合中第一个元素的高度；或者设置对象集合中所有元素的高度。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#foo&#39;</span><span class="p">).</span><span class="nx">height</span><span class="p">()</span>   <span class="c1">// =&gt; 123</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">height</span><span class="p">()</span>   <span class="c1">// =&gt; 838 (viewport height)</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">height</span><span class="p">()</span> <span class="c1">// =&gt; 22302</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-hide">
+  <h3>hide
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>hide() ⇒ self
+</code></pre>
+  
+  <p>通过设置css的属性display 为 <code>none</code>来将对象集合中的元素隐藏。</p>
+
+</article>
+
+<article class=method id="core-html">
+  <h3>html
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>html() ⇒ string
+html(content) ⇒ self
+html(function(index, oldHtml){ ... }) ⇒ self
+</code></pre>
+  
+  <p>获取或设置对象集合中元素的HTML内容。当没有给定content参数时，返回对象集合中第一个元素的innerHtml。
+当给定content参数时，用其替换对象集合中每个元素的内容。content可以是<a href="#append">append</a>中描述的所有类型。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// autolink everything that looks like a Twitter username</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.comment p&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="nx">oldHtml</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">oldHtml</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(^|\W)@(\w{1,15})/g</span><span class="p">,</span>
+    <span class="s1">&#39;$1@&lt;a href=&quot;http://twitter.com/$2&quot;&gt;$2&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-index">
+  <h3>index
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>index([element]) ⇒ number
+</code></pre>
+  
+  <p>获取一个元素的索引值（注：从0开始计数）。当elemen参数没有给出时，
+返回当前元素在兄弟节点中的位置。当element参数给出时，
+返回它在当前对象集合中的位置。如果没有找到该元素，则返回<code>-1</code>。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:nth-child(2)&#39;</span><span class="p">).</span><span class="nx">index</span><span class="p">()</span>  <span class="c1">//=&gt; 1</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-indexOf">
+  <h3>indexOf
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>indexOf(element, [fromIndex]) ⇒ number
+</code></pre>
+  
+  <p>在当前对象集合中获取一个元素的索引值（注：从0开始计数）。如果给定formindex参数，
+从该位置开始往后查找，返回基于0的索引值，如果没找到，则返回<code>-1</code>。<a href="#index">index</a> 方法是基于这个方法实现的。</p>
+
+<p class=compat>
+  这是一个Zepto的方法，不是jquer的api。
+</p>
+
+
+</article>
+
+<article class=method id="core-insertAfter">
+  <h3>insertAfter
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>insertAfter(target) ⇒ self
+</code></pre>
+  
+  <p>将集合中的元素插入到指定的目标元素后面（注：外部插入）。
+这个有点像  <a href="#after">after</a>，但是使用方式相反。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Emphasis mine.&lt;/p&gt;&#39;</span><span class="p">).</span><span class="nx">insertAfter</span><span class="p">(</span><span class="s1">&#39;blockquote&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-insertAfter">
+  <h3>insertBefore
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>insertBefore(target) ⇒ self
+</code></pre>
+  
+  <p>将集合中的元素插入到指定的目标元素前面（注：外部插入）。
+这个有点像 <a href="#before">before</a>，但是使用方式相反。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;See the following table:&lt;/p&gt;&#39;</span><span class="p">).</span><span class="nx">insertBefore</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-is">
+  <h3>is
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>is(selector) ⇒ boolean
+</code></pre>
+  
+  <p>判断当前元素集合中的第一个元素是否符css选择器。
+对于基础支持jquery的非标准选择器类似： <code>:visible</code>包含在可选的“selector”模块中。</p>
+
+<p class=compat>
+  <a href="http://api.jquery.com/category/selectors/jquery-selector-extensions/">
+  jQuery CSS extensions</a> 不被支持。 选择“selector”模块仅仅能支持有限几个最常用的方式。
+</p>
+
+
+
+
+</article>
+
+<article class=method id="core-last">
+  <h3>last
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>last() ⇒ collection
+</code></pre>
+  
+  <p>获取对象集合中最后一个元素。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span><span class="nx">last</span><span class="p">()</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-map">
+  <h3>map
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>map(function(index, item){ ... }) ⇒ collection
+</code></pre>
+  
+  <p>遍历对象集合中的所有元素。通过遍历函数返回值形成一个新的集合对象。
+在遍历函数中<code>this</code>关键之指向当前循环的项（遍历函数中的第二个参数）。</p>
+
+<p>遍历中返回 <code>null</code>和<code>undefined</code>，遍历将结束。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// get text contents of all elements in collection</span>
+<span class="nx">elements</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span> <span class="p">}).</span><span class="nx">get</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-next">
+  <h3>next
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>next() ⇒ collection
+next(selector) ⇒ collection [v1.0]
+</code></pre>
+  
+  <p>获取对象集合中每一个元素的下一个兄弟节点(可以选择性的带上过滤选择器)。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;dl dt&#39;</span><span class="p">).</span><span class="nx">next</span><span class="p">()</span>   <span class="c1">//=&gt; the DD elements</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-not">
+  <h3>not
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>not(selector) ⇒ collection
+not(collection) ⇒ collection
+not(function(index){ ... }) ⇒ collection
+</code></pre>
+  
+  <p>过滤当前对象集合，获取一个新的对象集合，它里面的元素不能匹配css选择器。
+如果另一个参数为Zepto对象集合，那么返回的新Zepto对象中的元素都不包含在该参数对象中。
+如果参数是一个函数。
+仅仅包含函数执行为false值得时候的元素，函数的 <code>this</code> 关键字指向当前循环元素。</p>
+
+<p>与它相反的功能，查看<a href="#filter">filter</a>.</p>
+
+</article>
+
+<article class=method id="core-offset">
+  <h3>offset
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>offset() ⇒ object
+offset(coordinates) ⇒ self [v1.0]
+offset(function(index, oldOffset){ ... }) ⇒ self [v1.0]
+</code></pre>
+  
+  <p>获得当前元素相对于document的位置。返回一个对象含有： <code>top</code>, <code>left</code>, <code>width</code>和<code>height</code>。</p>
+
+<p>当给定一个含有<code>left</code>和<code>top</code>属性对象时，使用这些值来对集合中每一个元素进行相对于document的定位。</p>
+
+</article>
+
+<article class=method id="core-offsetParent">
+  <h3>offsetParent
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>offsetParent() ⇒ collection
+</code></pre>
+  
+  <p>找到第一个定位过的祖先元素，意味着它的css中的<code>position</code> 属性值为“relative”, “absolute” or “fixed”。</p>
+
+</article>
+
+<article class=method id="core-offsetParent">
+  <h3>parent
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>parent([selector]) ⇒ collection
+</code></pre>
+  
+  <p>获取对象集合中每个元素的直接父元素。如果css选择器参数给出。过滤出符合条件的元素。</p>
+
+</article>
+
+<article class=method id="core-parents">
+  <h3>parents
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>parents([selector]) ⇒ collection
+</code></pre>
+  
+  <p>获取对象集合每个元素所有的祖先元素。如果css选择器参数给出，过滤出符合条件的元素。</p>
+
+<p>如果想获取直接父级元素，使用 <a href="#parent">parent</a>。如果只想获取到第一个符合css选择器的元素，使用<a href="#closest">closest</a>。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">).</span><span class="nx">parents</span><span class="p">()</span>   <span class="c1">//=&gt; [&lt;div#container&gt;, &lt;body&gt;, &lt;html&gt;]</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-pluck">
+  <h3>pluck
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>pluck(property) ⇒ array
+</code></pre>
+  
+  <p>获取对象集合中每一个元素的属性值。返回值为 <code>null</code>或<code>undefined</code>值得过滤掉。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body &gt; *&#39;</span><span class="p">).</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;nodeName&#39;</span><span class="p">)</span> <span class="c1">// =&gt; [&quot;DIV&quot;, &quot;SCRIPT&quot;]</span>
+
+<span class="c1">// implementation of Zepto&#39;s `next` method</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> 
+  <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;nextElementSibling&#39;</span><span class="p">))</span> 
+<span class="p">}</span></code></pre></div>
+
+
+
+
+<p class=compat>
+  这是一个Zepto的方法，不是jquery的api
+</p>
+
+
+</article>
+
+<article class=method id="core-position">
+  <h3>position
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>position() ⇒ object
+</code></pre>
+  
+  <p>获取对象集合中第一个元素的位置。相对于 <a href="#offsetParent">offsetParent</a>。
+当绝对定位的一个元素靠近另一个元素的时候，这个方法是有用的。</p>
+
+<p>返回对象属性包括 : <code>top</code>, <code>left</code>.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">position</span><span class="p">()</span>
+
+<span class="c1">// position a tooltip relative to the element</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#tooltip&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span>
+  <span class="nx">position</span><span class="o">:</span> <span class="s1">&#39;absolute&#39;</span><span class="p">,</span>
+  <span class="nx">top</span><span class="o">:</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="nx">left</span><span class="o">:</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">left</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-prepend">
+  <h3>prepend
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>prepend(content) ⇒ self
+</code></pre>
+  
+  <p>将参数内容插入到每个匹配元素的前面（注：元素内部插入）。
+插入d的元素可以试html字符串片段，一个dom节点，或者一个节点的数组。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;first list item&lt;/li&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-prependTo">
+  <h3>prependTo
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>prependTo(target) ⇒ self
+</code></pre>
+  
+  <p>将所有元素插入到目标前面（注：元素内部插入）。这有点像<a href="#prepend">prepend</a>，但是是相反的方式。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;first list item&lt;/li&gt;&#39;</span><span class="p">).</span><span class="nx">prependTo</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-prev">
+  <h3>prev
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>prev() ⇒ collection
+prev(selector) ⇒ collection [v1.0]
+</code></pre>
+  
+  <p>获取对象集合中每一个元素的前一个兄弟节点，通过选择器来进行过滤。</p>
+
+</article>
+
+<article class=method id="core-prop">
+  <h3>prop
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>prop(name) ⇒ value
+prop(name, value) ⇒ self
+prop(name, function(index, oldValue){ ... }) ⇒ self
+</code></pre>
+  
+  <p>读取或设置dom元素的属性值。它在读取属性值的情况下优先于 <a href="#attr">attr</a>，
+因为这些属性值会因为用户的交互发生改变，如<code>checked</code> 和 <code>selected</code>。</p>
+
+<p>简写或小写名称，比如<code>for</code>, <code>class</code>, <code>readonly</code> 及类似的属性，将被映射到实际的属性上，
+比如<code>htmlFor</code>, <code>className</code>, <code>readOnly</code>, 等等。</p>
+
+</article>
+
+<article class=method id="core-push">
+  <h3>push
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>push(element, [element2, ...]) ⇒ self
+</code></pre>
+  
+  <p>添加元素到当前对象集合的最后。</p>
+
+<p class=compat>
+ 这是一个zepto的方法，不是jquery的api。
+</p>
+
+
+</article>
+
+<article class=method id="core-ready">
+  <h3>ready
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>ready(function($){ ... }) ⇒ self
+</code></pre>
+  
+  <p>添加一个事件侦听器，当页面DOM加载完毕 “DOMContentLoaded” 事件触发时触发。
+建议使用 [$()](#$()来代替这种用法。</p>
+
+</article>
+
+<article class=method id="core-reduce">
+  <h3>reduce
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>reduce(function(memo, item, index, array){ ... }, [initial]) ⇒ value
+</code></pre>
+  
+  <p>与 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/Reduce">Array.reduce</a>有相同的用法，遍历当前对象集合。memo是函数上次的返回值。迭代进行遍历。</p>
+
+<p class=compat>
+  这是一个zepto的方法，不是jquery的api。
+</p>
+
+
+
+
+</article>
+
+<article class=method id="core-remove">
+  <h3>remove
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>remove() ⇒ self
+</code></pre>
+  
+  <p>从其父节点中删除当前集合中的元素，有效的从dom中移除。</p>
+
+</article>
+
+<article class=method id="core-removeAttr">
+  <h3>removeAttr
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>removeAttr(name) ⇒ self
+</code></pre>
+  
+  <p>移除当前对象集合中所有元素的指定属性。</p>
+
+</article>
+
+<article class=method id="core-removeClass">
+  <h3>removeClass
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>removeClass([name]) ⇒ self
+removeClass(function(index, oldClassName){ ... }) ⇒ self
+</code></pre>
+  
+  <p>移除当前对象集合中所有元素的指定class。如果没有指定name参数，将移出所有的class。
+多个class参数名称可以利用空格分隔。下例移除了两个class。</p>
+
+</article>
+
+<article class=method id="core-replaceWith">
+  <h3>replaceWith
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>replaceWith(content) ⇒ self
+</code></pre>
+  
+  <p>用给定的内容替换所有匹配的元素。(包含元素本身)。
+content参数可以为<a href="#before">before</a>中描述的类型。</p>
+
+</article>
+
+<article class=method id="core-scrollLeft">
+  <h3>scrollLeft
+  
+  <span class=version>v1.1+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>scrollLeft() ⇒ number
+scrollLeft(value) ⇒ self
+</code></pre>
+  
+  <p>获取或设置页面上的滚动元素或者整个窗口向右滚动的像素值。</p>
+
+</article>
+
+<article class=method id="core-scrollTop">
+  <h3>scrollTop
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>scrollTop() ⇒ number
+scrollTop(value) ⇒ self [v1.1]
+</code></pre>
+  
+  <p>获取或设置页面上的滚动元素或者整个窗口向下滚动的像素值。</p>
+
+</article>
+
+<article class=method id="core-show">
+  <h3>show
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>show() ⇒ self
+</code></pre>
+  
+  <p>恢复对象集合中每个元素默认的“display”值。如果你用 hide将元素隐藏，
+用该属性可以将其显示。相当于去掉了<a href="#hide">hide</a>。</p>
+
+</article>
+
+<article class=method id="core-siblings">
+  <h3>siblings
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>siblings([selector]) ⇒ collection
+</code></pre>
+  
+  <p>获取对象集合中所有元素的兄弟节点。如果给定CSS选择器参数，过滤出符合选择器的元素。</p>
+
+</article>
+
+<article class=method id="core-size">
+  <h3>size
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>size() ⇒ number
+</code></pre>
+  
+  <p>获取对象集合中元素的数量。</p>
+
+</article>
+
+<article class=method id="core-slice">
+  <h3>slice
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>slice(start, [end]) ⇒ array
+</code></pre>
+  
+  <p>提取这个数组array的子集，从<code>start</code>开始，如果给定<code>end</code>，
+提取从从<code>start</code>开始到<code>end</code>结束的元素，但是不包含<code>end</code>位置的元素。</p>
+
+</article>
+
+<article class=method id="core-text">
+  <h3>text
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>text() ⇒ string
+text(content) ⇒ self
+text(function(index, oldText){ ... }) ⇒ self [v1.1.4]
+</code></pre>
+  
+  <p>获取或者设置所有对象集合中元素的文本内容。当没有给定content参数时，
+返回当前对象集合中第一个元素的文本内容（包含子节点中的文本内容）。
+当给定content参数时，使用它替换对象集合中所有元素的文本内容。
+它有待点似 <a href="#html">html</a>，与它不同的是它不能用来获取或设置 HTML。</p>
+
+</article>
+
+<article class=method id="core-toggle">
+  <h3>toggle
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>toggle([setting]) ⇒ self
+</code></pre>
+  
+  <p>显示或隐藏匹配元素。如果 setting为true，相当于 <a href="#show">show</a>法。
+如果<code>setting</code>为false。相当于 <a href="#hide">hide</a>方法。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;input[type=text]&#39;</span><span class="p">)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#too_long&#39;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">140</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-toggleClass">
+  <h3>toggleClass
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>toggleClass(names, [setting]) ⇒ self
+toggleClass(function(index, oldClassNames){ ... }, [setting]) ⇒ self
+</code></pre>
+  
+  <p>在匹配的元素集合中的每个元素上添加或删除一个或多个样式类。
+如果class的名称存在则删除它，如果不存在，就添加它。
+如果 setting的值为真，这个功能类似于 <a href="#addClass">addClass</a>，如果为假，这个功能类似与 <a href="#removeClass">removeClass</a>。</p>
+
+</article>
+
+<article class=method id="core-unwrap">
+  <h3>unwrap
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>unwrap() ⇒ self
+</code></pre>
+  
+  <p>移除集合中每个元素的直接父节点，并把他们的子元素保留在原来的位置。
+ 基本上，这种方法删除上一的祖先元素，同时保持DOM中的当前元素。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div id=wrapper&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wrapper p&#39;</span><span class="p">).</span><span class="nx">unwrap</span><span class="p">().</span><span class="nx">parents</span><span class="p">()</span>  <span class="c1">//=&gt; [&lt;body&gt;, &lt;html&gt;]</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-val">
+  <h3>val
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>val() ⇒ string
+val(value) ⇒ self
+val(function(index, oldValue){ ... }) ⇒ self
+</code></pre>
+  
+  <p>获取或设置匹配元素的值。当没有给定value参数，返回第一个元素的值。
+如果是<code>&lt;select multiple&gt;</code>标签，则返回一个数组。
+当给定value参数，那么将设置所有元素的值。</p>
+
+</article>
+
+<article class=method id="core-width">
+  <h3>width
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>width() ⇒ number
+width(value) ⇒ self
+width(function(index, oldWidth){ ... }) ⇒ self
+</code></pre>
+  
+  <p>获取对象集合中第一个元素的宽；或者设置对象集合中所有元素的宽。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#foo&#39;</span><span class="p">).</span><span class="nx">width</span><span class="p">()</span>   <span class="c1">// =&gt; 123</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">width</span><span class="p">()</span>   <span class="c1">// =&gt; 768 (viewport width)</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">width</span><span class="p">()</span> <span class="c1">// =&gt; 768</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-wrap">
+  <h3>wrap
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>wrap(structure) ⇒ self
+wrap(function(index){ ... }) ⇒ self [v1.0]
+</code></pre>
+  
+  <p>在每个匹配的元素外层包上一个html元素。structure参数可以是一个单独的元
+素或者一些嵌套的元素。也可以是一个html字符串片段或者dom节点。
+还可以是一个生成用来包元素的回调函数，这个函数返回前两种类型的包裹片段。</p>
+
+<p><strong>需要提醒的是</strong> 该方法对于dom中的节点有着很好的支持。
+  如果将<code>wrap()</code> 用在一个新的元素上，
+  然后再将结果插入到document中，此时该方法无效。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// wrap each button in a separate span:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.buttons a&#39;</span><span class="p">).</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;span&gt;&#39;</span><span class="p">)</span>
+
+<span class="c1">// wrap each code block in a div and pre:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">).</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;div class=highlight&gt;&lt;pre /&gt;&lt;/div&gt;&#39;</span><span class="p">)</span>
+
+<span class="c1">// wrap all form inputs in a span with classname</span>
+<span class="c1">// corresponding to input type:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">).</span><span class="nx">wrap</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">){</span>
+  <span class="k">return</span> <span class="s1">&#39;&lt;span class=&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">+</span> <span class="s1">&#39;field /&gt;&#39;</span>
+<span class="p">})</span>
+<span class="c1">//=&gt; &lt;span class=textfield&gt;&lt;input type=text /&gt;&lt;/span&gt;,</span>
+<span class="c1">//   &lt;span class=searchfield&gt;&lt;input type=search /&gt;&lt;/span&gt;</span>
+
+<span class="c1">// WARNING: will not work as expected!</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;em&gt;broken&lt;/em&gt;&#39;</span><span class="p">).</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+<span class="c1">// do this instead:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;em&gt;better&lt;/em&gt;&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">wrap</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-wrapAll">
+  <h3>wrapAll
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>wrapAll(structure) ⇒ self
+</code></pre>
+  
+  <p>在所有匹配元素外面包一个单独的结构。结构可以是单个元素或 几个嵌套的元素，
+并且可以通过在作为HTML字符串或DOM节点。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// wrap all buttons in a single div:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a.button&#39;</span><span class="p">).</span><span class="nx">wrapAll</span><span class="p">(</span><span class="s1">&#39;&lt;div id=buttons /&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-wrapInner">
+  <h3>wrapInner
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>wrapInner(structure) ⇒ self
+wrapInner(function(index){ ... }) ⇒ self [v1.0]
+</code></pre>
+  
+  <p>将每个元素中的 <em>内容</em> 包裹在一个单独的结构中。结构可以是单个元件或多个嵌套元件，
+并且可以通过在作为HTML字符串或DOM节点，
+或者是一个生成用来包元素的回调函数，这个函数返回前两种类型的包裹片段。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// wrap the contents of each navigation link in a span:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;nav a&#39;</span><span class="p">).</span><span class="nx">wrapInner</span><span class="p">(</span><span class="s1">&#39;&lt;span&gt;&#39;</span><span class="p">)</span>
+
+<span class="c1">// wrap the contents of each list item in a paragraph and emphasis:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ol li&#39;</span><span class="p">).</span><span class="nx">wrapInner</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;&lt;em /&gt;&lt;/p&gt;&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+
+
+<hr>
+<h2 id="detect">Detect methods</h2>
+
+
+<article class=method id="detect_module">
+  <h3>Detect module
+  
+   
+  </h3>
+  
+  
+  <p>该检测方法可以在不同的环境中微调你的站点或者应用程序，
+并帮助你识别手机和平板；以及不同的浏览器和操作系统。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// The following boolean flags are set to true if they apply,</span>
+<span class="c1">// if not they&#39;re either set to `false` or `undefined`.</span>
+<span class="c1">// We recommend accessing them with `!!` prefixed to coerce to a boolean. </span>
+
+<span class="c1">// general device type</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">phone</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">tablet</span>
+
+<span class="c1">// specific OS</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">ios</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">android</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">webos</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">blackberry</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">bb10</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">rimtabletos</span>
+
+<span class="c1">// specific device type</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">iphone</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">ipad</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">ipod</span> <span class="c1">// [v1.1]</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">touchpad</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">kindle</span>
+
+<span class="c1">// specific browser</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">chrome</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">firefox</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">safari</span> <span class="c1">// [v1.1]</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">webview</span> <span class="c1">// (iOS) [v1.1]</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">silk</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">playbook</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">ie</span> <span class="c1">// [v1.1]</span>
+
+<span class="c1">// Additionally, version information is available as well.</span>
+<span class="c1">// Here&#39;s what&#39;s returned for an iPhone running iOS 6.1.</span>
+<span class="o">!!</span><span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">phone</span>         <span class="c1">// =&gt; true</span>
+<span class="o">!!</span><span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">iphone</span>        <span class="c1">// =&gt; true</span>
+<span class="o">!!</span><span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">ios</span>           <span class="c1">// =&gt; true</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">os</span><span class="p">.</span><span class="nx">version</span>       <span class="c1">// =&gt; &quot;6.1&quot;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">version</span>  <span class="c1">// =&gt; &quot;536.26&quot;</span></code></pre></div>
+
+
+
+
+</article>
+
+
+
+<hr>
+<h2 id="event">Event handling</h2>
+
+
+<article class=method id="event">
+  <h3>$.Event
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.Event(type, [properties]) ⇒ event
+</code></pre>
+  
+  <p>创建并初始化一个指定的DOM事件。如果给定<code>properties</code>对象，使用它来扩展出新的事件对象。
+默认情况下，事件被设置为冒泡方式；这个可以通过设置<code>bubbles</code>为false来关闭。</p>
+
+<p>一个事件初始化的函数可以使用 <a href="#trigger">trigger</a>来触发。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;mylib:change&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">false</span> <span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="proxy">
+  <h3>$.proxy
+  
+  <span class=version>v1.0+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>$.proxy(fn, context) ⇒ function
+$.proxy(fn, context, [additionalArguments...]) ⇒ function [v1.1.4]
+$.proxy(context, property) ⇒ function
+$.proxy(context, property, [additionalArguments...]) ⇒ function [v1.1.4]
+</code></pre>
+  
+  <p>接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文(context)语境，
+新函数中<code>this</code>指向context参数。另外一种形式，原始的function是从上下文(context)对象的特定属性读取。</p>
+
+<p>如果传递超过2个的额外参数，它们被用于 传递给fn参数的函数 引用。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zepto&#39;</span><span class="p">},</span>
+    <span class="nx">handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello from + &quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="c1">// ensures that the handler will be executed in the context of `obj`:</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">obj</span><span class="p">))</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="bind">
+  <h3>bind
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#on">on</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>bind(type, function(e){ ... }) ⇒ self
+bind(type, [data], function(e){ ... }) ⇒ self [v1.1]
+bind({ type: handler, type2: handler2, ... }) ⇒ self
+bind({ type: handler, type2: handler2, ... }, [data]) ⇒ self [v1.1]
+</code></pre>
+  
+  <p>为一个元素绑定一个处理事件。</p>
+
+</article>
+
+<article class=method id="delegate">
+  <h3>delegate
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#on">on</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>delegate(selector, type, function(e){ ... }) ⇒ self
+delegate(selector, { type: handler, type2: handler2, ... }) ⇒ self
+</code></pre>
+  
+  <p>基于一组特定的根元素为所有选择器匹配的元素附加一个处理事件，匹配的元素可能现在或将来才创建。</p>
+
+</article>
+
+<article class=method id="die">
+  <h3>die
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#off">off</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>die(type, function(e){ ... }) ⇒ self
+die({ type: handler, type2: handler2, ... }) ⇒ self
+</code></pre>
+  
+  <p>删除通过 <a href="#live">live</a> 添加的事件。</p>
+
+</article>
+
+<article class=method id="isDefaultPrevented">
+  <h3>event.isDefaultPrevented
+  
+  <span class=version>v1.1+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>event.isDefaultPrevented() ⇒ boolean
+</code></pre>
+  
+  <p>如果<code>preventDefault()</code>被该事件的实例调用，那么返回true。 这可作为跨平台的替代原生的<code>defaultPrevented</code>属性，
+如果 <code>defaultPrevented</code>缺失或在某些浏览器下不可靠的时候。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// trigger a custom event and check whether it was cancelled</span>
+<span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">)</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+<span class="nx">event</span><span class="p">.</span><span class="nx">isDefaultPrevented</span><span class="p">()</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="">
+  <h3>Event.isimmediatepropagationstopped
+  
+   
+  </h3>
+  
+  
+  <p>如果<code>stopImmediatePropagation()</code>被该事件的实例调用，那么返回true。
+Zepto在不支持该原生方法的浏览器中实现它，  （例如老版本的Android）。</p>
+
+</article>
+
+<article class=method id="isPropagationStopped">
+  <h3>event.isPropagationStopped
+  
+  <span class=version>v1.1+</span> 
+  </h3>
+  
+  
+  <pre class=signature><code>event.isPropagationStopped() ⇒ boolean
+</code></pre>
+  
+  <p>如果<code>stopPropagation()</code>被该事件的实例调用，那么返回true。</p>
+
+</article>
+
+<article class=method id="live">
+  <h3>live
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#on">on</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>live(type, function(e){ ... }) ⇒ self
+live({ type: handler, type2: handler2, ... }) ⇒ self
+</code></pre>
+  
+  <p>类似<a href="#delegate">delegate</a>，添加一个个事件处理器到符合目前选择器的所有元素匹配，匹配的元素可能现在或将来才创建。</p>
+
+</article>
+
+<article class=method id="false">
+  <h3>off
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>off(type, [selector], function(e){ ... }) ⇒ self
+off({ type: handler, type2: handler2, ... }, [selector]) ⇒ self
+off(type, [selector]) ⇒ self
+off() ⇒ self
+</code></pre>
+  
+  <p>移除通过 <a href="#on">on</a> 添加的事件.移除一个特定的事件处理程序， 必须通过用<code>on()</code>添加的那个相同的函数。
+否则，只通过事件类型调用此方法将移除该类型的所有处理程序。
+如果没有参数，将移出当前元素上 <em>全部</em> 的注册事件。</p>
+
+</article>
+
+<article class=method id="true">
+  <h3>on
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>on(type, [selector], function(e){ ... }) ⇒ self
+on(type, [selector], [data], function(e){ ... }) ⇒ self [v1.1]
+on({ type: handler, type2: handler2, ... }, [selector]) ⇒ self
+on({ type: handler, type2: handler2, ... }, [selector], [data]) ⇒ self [v1.1]
+</code></pre>
+  
+  <p>添加事件处理程序到对象集合中得元素上。多个事件可以通过空格的字符串方式添加，
+或者以事件类型为键、以函数为值的对象 方式。如果给定css选择器，
+当事件在匹配该选择器的元素上发起时，事件才会被触发（注：即事件委派，或者说事件代理）。</p>
+
+<p>如果给定<code>data</code>参数，这个值将在事件处理程序执行期间被作为有用的 <code>event.data</code> 属性。</p>
+
+<p>事件处理程序在添加该处理程序的元素、或在给定选择器情况下匹配该选择器的元素的上下文中执行
+(注：this指向触发事件的元素)。 当一个事件处理程序返回<code>false</code>，
+<code>preventDefault()</code> 和 <code>stopPropagation()</code>被当前事件调用的情况下，  将防止默认浏览器操作，如链接。</p>
+
+<p>如果<code>false</code>在回调函数的位置上作为参数传递给这个方法， 它相当于传递一个函数，
+这个函数直接返回false。（注：即将 false 当作 <code>function(e){ ... }</code> 的参数，
+作为 <code>function(){ return false; }</code> 的简写形式，例如： <code>$("a.disabled").on("click", false);
+这相当于$("a.disabled").on("click", function(){ return false; } );）</code></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#content&#39;</span><span class="p">)</span>
+<span class="c1">// observe all clicks inside #content:</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="c1">// observe clicks inside navigation links in #content</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;nav a&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="c1">// all clicks inside links in the document</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="c1">// disable following any navigation link on the page</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;nav a&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="one">
+  <h3>one
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>one(type, [selector], function(e){ ... }) ⇒ self
+one(type, [selector], [data], function(e){ ... }) ⇒ self [v1.1]
+one({ type: handler, type2: handler2, ... }, [selector]) ⇒ self
+one({ type: handler, type2: handler2, ... }, [selector], [data]) ⇒ self [v1.1]
+</code></pre>
+  
+  <p>添加一个处理事件到元素，当第一次执行事件以后，该事件将自动解除绑定，保证处理函数在每个元素上最多执行一次。
+<code>selector</code> 和 <code>data</code> 等参数说明请查看<a href="#on"><code>.on()</code></a>。</p>
+
+</article>
+
+<article class=method id="trigger">
+  <h3>trigger
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>trigger(event, [args]) ⇒ self
+</code></pre>
+  
+  <p>在对象集合的元素上触发指定的事件。事件可以是一个字符串类型，
+也可以是一个 通过<a href="#$.Event">$.Event</a> 定义的事件对象。如果给定<code>args</code>参数，它会作为参数传递给事件函数。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// add a handler for a custom event</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mylib:change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;change on %o with data %s, %s&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="c1">// trigger the custom event</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;mylib:change&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">])</span></code></pre></div>
+
+
+
+
+<p class=compat>
+  Zepto仅仅支持在dom元素上触发事件。
+</p>
+
+
+</article>
+
+<article class=method id="triggerHandler">
+  <h3>triggerHandler
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>triggerHandler(event, [args]) ⇒ self
+</code></pre>
+  
+  <p>像 <a href="#trigger">trigger</a>，它只在当前元素上触发事件，但不冒泡。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">).</span><span class="nx">triggerHandler</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">);</span>
+<span class="c1">// 此时input上的focus事件触发，但是input不会获取焦点</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">);</span>
+<span class="c1">// 此时input上的focus事件触发，input获取焦点</span></code></pre></div>
+
+
+</article>
+
+<article class=method id="unbind">
+  <h3>unbind
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#off">off</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>unbind(type, function(e){ ... }) ⇒ self
+unbind({ type: handler, type2: handler2, ... }) ⇒ self
+</code></pre>
+  
+  <p>移除通过  <a href="#bind">bind</a> 注册的事件。</p>
+
+</article>
+
+<article class=method id="undelegate">
+  <h3>undelegate
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#off">off</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>undelegate(selector, type, function(e){ ... }) ⇒ self
+undelegate(selector, { type: handler, type2: handler2, ... }) ⇒ self
+</code></pre>
+  
+  <p>移除通过<a href="#delegate">delegate</a> 注册的事件。</p>
+
+</article>
+
+
+
+<hr>
+<h2 id="ajax">Ajax requests</h2>
+
+
+<article class=method id="core-z-ajax">
+  <h3>$.ajax
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.ajax(options) ⇒ XMLHttpRequest
+</code></pre>
+  
+  <p>执行Ajax请求。它可以是本地资源，或者通过支持<a href="https://developer.mozilla.org/en/http_access_control">HTTP access control</a>的浏览器 或者通过<a href="http://json-p.org">JSONP</a>来实现跨域。</p>
+
+<p>选项:</p>
+
+<ul>
+<li><code>type</code> (默认： “GET”)：请求方法 (“GET”, “POST”,或者其他)</li>
+<li><code>url</code>  (默认： 当前地址)：发送请求的地址</li>
+<li><code>data</code>  (默认：none)：发送到服务器的数据；如果是GET请求，它会自动被作为参数拼接到url上。
+      非String对象将通过  <a href="#$.param">$.param</a>得到序列化字符串。</li>
+<li><code>processData</code> (默认： true)： 对于非Get请求。是否自动将 <code>data</code> 转换为字符串。</li>
+<li><code>contentType</code> (默认： “application/x-www-form-urlencoded”)： 发送信息至服务器时内容编码类型
+            (这也可以通过设置 <code>headers</code>)。通过设置 <code>false</code> 跳过设置默认值。</li>
+<li><code>mimeType</code> (默认： none): 覆盖响应的MIME类型。<span class=version>v1.1+</span></li>
+<li><code>dataType</code>  (默认： none)：预期服务器返回的数据类型(<code>json</code>, <code>jsonp</code>, <code>xml</code>, <code>html</code>, or <code>text</code>)</li>
+<li><code>jsonp</code> (默认：“callback”): JSONP回调查询参数的名称</li>
+<li><code>jsonpCallback</code> (默认： “jsonp{N}”): 全局JSONP回调函数的 字符串（或返回的一个函数）名。
+            设置该项能启用浏览器的缓存。<span class=version>v1.1+</span></li>
+<li><code>timeout</code>  (默认： <code>0</code>): 以毫秒为单位的请求超时时间, <code>0</code> 表示不超时。</li>
+<li><code>headers</code>: Ajax请求中额外的HTTP信息头对象</li>
+<li><code>async</code> (默认：true): 默认设置下，所有请求均为异步。如果需发送同步请求，请将此设置为 <code>false</code>。</li>
+<li><code>global</code>  (默认：true): 请求将触发全局Ajax事件处理程序，设置为 <code>false</code> 将不会触发全局 Ajax 事件。</li>
+<li><code>context</code>  (默认：window): 这个对象用于设置Ajax相关回调函数的上下文(this指向)。</li>
+<li><code>traditional</code>(默认： false): 激活传统的方式通过<a href="#$.param">$.param</a>来得到序列化的 <code>data</code>。</li>
+<li><code>cache</code> (默认： true): 浏览器是否应该被允许缓存GET响应。
+        从<span class=version>v1.1.4</span>开始，当dataType选项为 &ldquo;script&rdquo; 或 jsonp时，默认为<code>false</code>。
+<code>dataType: "script"</code> or <code>jsonp</code>.</li>
+<li><code>xhrFields</code>  (默认： none): 一个对象包含的属性被逐字复制到XMLHttpRequest的实例。
+<span class=version>v1.1+</span></li>
+<li><code>username</code> &amp; <code>password</code>(默认： none): HTTP基本身份验证凭据。
+<span class=version>v1.1+</span></li>
+</ul>
+
+
+<p>如果URL中含有 <code>=?</code>或者<code>dataType</code>是“jsonp”，这讲求将会通过注入一个 <code>&lt;script&gt;</code>标签来代替使用
+ XMLHttpRequest (查看 <a href="http://json-p.org">JSONP</a>)。此时 <code>contentType</code>, <code>dataType</code>, <code>headers</code>有限制，<code>async</code> 不被支持。</p>
+
+<h4>Ajax 回调函数</h4>
+
+<p>你可以指定以下的回调函数，他们将按给定的顺序执行：</p>
+
+<ol>
+<li><p><code>beforeSend(xhr, settings)</code>: 请求发出前调用，它接收xhr对象和settings作为参数对象。
+      如果它返回 <code>false</code> ，请求将被取消。</p></li>
+<li><p><code>success(data, status, xhr)</code>: 请求成功之后调用。传入返回后的数据，以及包含成功代码的字符串。</p></li>
+<li><p><code>error(xhr, errorType, error)</code>: 请求出错时调用。 (超时，解析错误，或者状态码不在HTTP 2xx)。</p></li>
+<li><p><code>complete(xhr, status)</code>: 请求完成时调用，无论请求失败或成功。</p></li>
+</ol>
+
+
+<h4>Promise 回调接口 <span class=version>v1.1+</span></h4>
+
+<p>如果可选的“callbacks” 和 “deferred” 模块被加载，从<code>$.ajax()</code>返回的XHR对象实现了promise接口链式的回调：</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">xhr</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">errorType</span><span class="p">,</span> <span class="nx">error</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">})</span></code></pre></div>
+
+
+<p>这些方法取代了 <code>success</code>, <code>error</code>, 和 <code>complete</code> 回调选项.</p>
+
+<h4>Ajax 事件</h4>
+
+<p>当<code>global: true</code>时,在Ajax请求生命周期内，以下这些事件将被触发:</p>
+
+<ol>
+<li><p><code>ajaxStart</code> <i>(global)</i>: 如果没有其他Ajax请求当前活跃将会被触发</p></li>
+<li><p><code>ajaxBeforeSend</code> (xhr, options): 再发送请求前，可以被取消</p></li>
+<li><p><code>ajaxSend</code> (xhr, options): 像 <code>ajaxBeforeSend</code>，但不能取消</p></li>
+<li><p><code>ajaxSuccess</code> (xhr, options, data): 当返回成功时</p></li>
+<li><p><code>ajaxError</code> (xhr, options, error): 当有错误时</p></li>
+<li><p><code>ajaxComplete</code> (xhr, options): 请求已经完成后，无论请求是成功或者失败。</p></li>
+<li><p><code>ajaxStop</code> <i>(global)</i>: fired if this was the last active Ajax request</p></li>
+</ol>
+
+
+<p>默认情况下，Ajax事件在document对象上触发。然而，如果请求的 <code>context</code> 是一个DOM节点，
+该事件会在此节点上触发然后再DOM中冒泡。唯一的例外是 <code>ajaxStart</code> &amp; <code>ajaxStop</code>这两个全局事件。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;ajaxBeforeSend&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">options</span><span class="p">){</span>
+  <span class="c1">// This gets fired for every Ajax request performed on the page.</span>
+  <span class="c1">// The xhr object and $.ajax() options are available for editing.</span>
+  <span class="c1">// Return false to cancel this request.</span>
+<span class="p">})</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/projects&#39;</span><span class="p">,</span>
+  <span class="c1">// data to be added to query string:</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zepto.js&#39;</span> <span class="p">},</span>
+  <span class="c1">// type of data we are expecting in return:</span>
+  <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+  <span class="nx">timeout</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+  <span class="nx">context</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">),</span>
+  <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="c1">// Supposing this JSON payload was received:</span>
+    <span class="c1">//   {&quot;project&quot;: {&quot;id&quot;: 42, &quot;html&quot;: &quot;&lt;div&gt;...&quot; }}</span>
+    <span class="c1">// append the HTML to context object.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">project</span><span class="p">.</span><span class="nx">html</span><span class="p">)</span>
+  <span class="p">},</span>
+  <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">type</span><span class="p">){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Ajax error!&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="c1">// post a JSON payload:</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/projects&#39;</span><span class="p">,</span>
+  <span class="c1">// post payload:</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zepto.js&#39;</span> <span class="p">}),</span>
+  <span class="nx">contentType</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-ajax-jsonp">
+  <h3>$.ajaxJSONP
+  <span class=emoji title=deprecated>🐶🔫</span>
+   
+  </h3>
+  
+  <p class=warning>
+    Deprecated, use <a href="#$.ajax">$.ajax</a> instead.
+  </p>
+  
+  
+  <pre class=signature><code>$.ajaxJSONP(options) ⇒ mock XMLHttpRequest
+</code></pre>
+  
+  <p>执行JSONP跨域获取数据。</p>
+
+<p>此方法相对<a href="#$.ajax">$.ajax</a> 没有优势，建议不要使用。</p>
+
+</article>
+
+<article class=method id="core-ajax-settings">
+  <h3>$.ajaxSettings
+  
+   
+  </h3>
+  
+  
+  <p>一个包含Ajax请求的默认设置的对象。大部分的设置在 <a href="#$.ajax">$.ajax</a>中已经描述。以下设置为全局非常有用：</p>
+
+<ul>
+<li><code>timeout</code>  (默认： 0)：对Ajax请求设置一个非零的值指定一个默认的超时时间，以毫秒为单位</li>
+<li><code>global</code> (默认： true)：设置为false。以防止触发Ajax事件</li>
+<li><code>xhr</code>  (默认：XMLHttpRequest factory)：设置为一个函数，它返回XMLHttpRequest实例(或一个兼容的对象)</li>
+<li><code>accepts</code>: 从服务器请求的<code>MIME</code>类型，指定dataType值:
+
+<ul>
+<li>script: &ldquo;text/javascript, application/javascript&rdquo;</li>
+<li>json:   &ldquo;application/json&rdquo;</li>
+<li>xml:    &ldquo;application/xml, text/xml&rdquo;</li>
+<li>html:   &ldquo;text/html&rdquo;</li>
+<li>text:   &ldquo;text/plain&rdquo;</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+
+<article class=method id="core-z-get">
+  <h3>$.get
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.get(url, function(data, status, xhr){ ... }) ⇒ XMLHttpRequest
+$.get(url, [data], [function(data, status, xhr){ ... }], [dataType]) ⇒ XMLHttpRequest [v1.0]
+</code></pre>
+  
+  <p>执行一个Ajax GET请求。这是一个 <a href="#$.ajax">$.ajax</a>的简写方式。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/whatevs.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-getJSON">
+  <h3>$.getJSON
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.getJSON(url, function(data, status, xhr){ ... }) ⇒ XMLHttpRequest
+$.getJSON(url, [data], function(data, status, xhr){ ... }) ⇒ XMLHttpRequest [v1.0]
+</code></pre>
+  
+  <p>通过 Ajax GET请求获取JSON数据。这是一个 <a href="#$.ajax">$.ajax</a>的简写方式。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;/awesome.json&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// fetch data from another domain with JSONP</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;//example.com/awesome.json?callback=?&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">remoteData</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">remoteData</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-param">
+  <h3>$.param
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.param(object, [shallow]) ⇒ string
+$.param(array) ⇒ string
+</code></pre>
+  
+  <p>序列化一个对象，在Ajax请求中提交的数据使用URL编码的查询字符串表示形式。
+如果shallow设置为true。嵌套对象不会被序列化，嵌套数组的值不会使用放括号在他们的key上。</p>
+
+<p>如果任何对象的某个属性值是一个函数，而不是一个字符串，该函数将被调用并且返回值后才会被序列化。</p>
+
+<p>此外，还接受 <a href="#serializeArray">serializeArray</a> 格式的数组，其中每个项都有 “name” 和 “value”属性。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">one</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">two</span><span class="o">:</span> <span class="mi">2</span> <span class="p">}})</span>
+<span class="c1">//=&gt; &quot;foo[one]=1&amp;foo[two]=2)&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">})</span>
+<span class="c1">//=&gt; &quot;ids[]=1&amp;ids[]=2&amp;ids[]=3&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">},</span> <span class="kc">true</span><span class="p">)</span>
+<span class="c1">//=&gt; &quot;ids=1&amp;ids=2&amp;ids=3&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nx">nested</span><span class="o">:</span> <span class="p">{</span> <span class="nx">will</span><span class="o">:</span> <span class="s1">&#39;not be ignored&#39;</span> <span class="p">}})</span>
+<span class="c1">//=&gt; &quot;foo=bar&amp;nested[will]=not+be+ignored&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nx">nested</span><span class="o">:</span> <span class="p">{</span> <span class="nx">will</span><span class="o">:</span> <span class="s1">&#39;be ignored&#39;</span> <span class="p">}},</span> <span class="kc">true</span><span class="p">)</span>
+<span class="c1">//=&gt; &quot;foo=bar&amp;nested=[object+Object]&quot;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">param</span><span class="p">({</span> <span class="nx">id</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">})</span>
+<span class="c1">//=&gt; &quot;id=3&quot;</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-z-post">
+  <h3>$.post
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>$.post(url, [data], function(data, status, xhr){ ... }, [dataType]) ⇒ XMLHttpRequest
+</code></pre>
+  
+  <p>执行Ajax POST请求。这是一个  <a href="#$.ajax">$.ajax</a> 的简写方式。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">sample</span><span class="o">:</span> <span class="s1">&#39;payload&#39;</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+  <span class="c1">// process response</span>
+<span class="p">})</span></code></pre></div>
+
+
+<p><code>data</code> can also be a string:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#some_form&#39;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+  <span class="c1">// ...</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="core-ajax-load">
+  <h3>load
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>load(url, function(data, status, xhr){ ... }) ⇒ self
+</code></pre>
+  
+  <p>通过GET Ajax载入远程 HTML 内容代码并插入至 当前的集合 中。另外，一个css选择器可以在url中指定，
+像这样，可以使用匹配selector选择器的HTML内容来更新集合。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#some_element&#39;</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;/foo.html #bar&#39;</span><span class="p">)</span></code></pre></div>
+
+
+<p>如果没有给定CSS选择器，将使用完整的返回文本。</p>
+
+<p>请注意，在没有选择器的情况下，任何javascript块都会执行。如果带上选择器，匹配选择器内的script将会被删除。</p>
+
+</article>
+
+
+
+<hr>
+<h2 id="form">Form methods</h2>
+
+
+<article class=method id="form-serialize">
+  <h3>serialize
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>serialize() ⇒ string
+</code></pre>
+  
+  <p>在Ajax post请求中将用作提交的表单元素的值编译成 URL编码的 字符串。</p>
+
+</article>
+
+<article class=method id="form-serializeArray">
+  <h3>serializeArray
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>serializeArray() ⇒ array
+</code></pre>
+  
+  <p>将用作提交的表单元素的值编译成拥有<code>name</code>和<code>value</code>对象组成的数组。
+不能使用的表单元素，buttons，未选中的radio buttons/checkboxs 将会被跳过。
+结果不包含file inputs的数据。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">serializeArray</span><span class="p">()</span>
+<span class="c1">//=&gt; [{ name: &#39;size&#39;, value: &#39;micro&#39; },</span>
+<span class="c1">//    { name: &#39;name&#39;, value: &#39;Zepto&#39; }]</span></code></pre></div>
+
+
+
+
+</article>
+
+<article class=method id="form-submit">
+  <h3>submit
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>submit() ⇒ self
+submit(function(e){ ... }) ⇒ self
+</code></pre>
+  
+  <p>为 &ldquo;submit&rdquo; 事件绑定一个处理函数，或者触发元素上的 &ldquo;submit&rdquo; 事件。
+当没有给定function参数时，触发当前表单“submit”事件，
+并且执行默认的提交表单行为，除非调用了 <code>preventDefault()</code>。</p>
+
+<p>当给定function参数时，在当前元素上它简单得为其在“submit”事件绑定一个处理函数。</p>
+
+</article>
+
+
+
+<hr>
+<h2 id="fx">Effects</h2>
+
+
+<article class=method id="z-fx">
+  <h3>$.fx
+  
+   
+  </h3>
+  
+  
+  <p>全局地动画设置：</p>
+
+<ul>
+<li><code>$.fx.off</code>  (在支持css transition 的浏览器中默认为false)：设置true来禁止所有<a href="#animate"><code>animate()</code></a>效果。</li>
+<li><p><code>$.fx.speeds</code>: 用来设置动画时间的对象：</p>
+
+<ul>
+<li><code>_default</code> (400 ms)</li>
+<li><code>fast</code> (200 ms)</li>
+<li><code>slow</code> (600 ms)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>  改变现有值或者添加一个新属性去影响使用一个字符串来设置时间的动画。</p>
+
+</article>
+
+<article class=method id="fx-animate">
+  <h3>animate
+  
+   
+  </h3>
+  
+  
+  <pre class=signature><code>animate(properties, [duration, [easing, [function(){ ... }]]]) ⇒ self
+animate(properties, { duration: msec, easing: type, complete: fn }) ⇒ self
+animate(animationName, { ... }) ⇒ self
+</code></pre>
+  
+  <p>对当前对象集合中元素进行css transition属性平滑过渡。</p>
+
+<ul>
+<li><code>properties</code>: 一个对象，该对象包含了css动画的值，或者css帧动画的名称。</li>
+<li><code>duration</code>  (默认 400)：以毫秒为单位的时间，或者一个字符串:
+
+<ul>
+<li><code>fast</code> (200 ms)</li>
+<li><code>slow</code> (600 ms)</li>
+<li>任何 <a href="#$.fx"><code>$.fx.speeds</code></a>自定义属性</li>
+</ul>
+</li>
+<li><code>easing</code>  (默认 <code>linear</code>)：指定动画的缓动类型，使用以下一个：
+
+<ul>
+<li><code>ease</code></li>
+<li><code>linear</code></li>
+<li><code>ease-in</code> / <code>ease-out</code></li>
+<li><code>ease-in-out</code></li>
+<li><a href="http://www.w3.org/TR/css3-transitions/#transition-timing-function_tag"><code>cubic-bezier(...)</code></a></li>
+</ul>
+</li>
+<li><code>complete</code>: 动画完成时的回调函数</li>
+<li><code>delay</code>:  以毫秒为单位的过度延迟时间
+<span class=version>v1.1+</span></li>
+</ul>
+
+
+<p>Zepto 还支持以下 <a href="http://www.w3.org/TR/css3-transforms/#transform-functions">CSS transform</a> transform 属性：</p>
+
+<ul>
+<li><code>translate(X|Y|Z|3d)</code></li>
+<li><code>rotate(X|Y|Z|3d)</code></li>
+<li><code>scale(X|Y|Z)</code></li>
+<li><code>matrix(3d)</code></li>
+<li><code>perspective</code></li>
+<li><code>skew(X|Y)</code></li>
+</ul>
+
+
+<p>如果duration参数为 <code>0</code> 或 <code>$.fx.off</code> 为 true(在不支持css transitions的浏览器中默认为true)，
+动画将不被执行；替代动画效果的目标位置会即刻生效。类似的，如果指定的动画不是通过动画完成，
+而且动画的目标位置即可生效。这种情况下没有动画， <code>complete</code>方法也不会被调用。</p>
+
+<p>如果第一个参数是字符串而不是一个对象，它将被当作一个css关键帧动画
+ <a href="http://www.w3.org/TR/css3-animations/#animations">CSS keyframe animation</a> 的名称。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#some_element&quot;</span><span class="p">).</span><span class="nx">animate</span><span class="p">({</span>
+  <span class="nx">opacity</span><span class="o">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="s1">&#39;50px&#39;</span><span class="p">,</span>
+  <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#abcdef&#39;</span><span class="p">,</span>
+  <span class="nx">rotateZ</span><span class="o">:</span> <span class="s1">&#39;45deg&#39;</span><span class="p">,</span> <span class="nx">translate3d</span><span class="o">:</span> <span class="s1">&#39;0,10px,0&#39;</span>
+<span class="p">},</span> <span class="mi">500</span><span class="p">,</span> <span class="s1">&#39;ease-out&#39;</span><span class="p">)</span></code></pre></div>
+
+
+
+
+<p class=compat>
+Zepto只使用css过渡效果的动画。jquery的easings不会支持。
+jquery的相对变化("=+10px") syntax 也不支持。
+请查看 <a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-">list of animatable properties</a>。
+浏览器的支持可能不同，所以一定要测试你所想要支持的浏览器。
+</p>
+
+
+
+
+</article>
+
+
+
+
+
+
+      </div>
+      
+      <div class="col-md-3" role="complementary">
+        <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+          <ul class="nav bs-docs-sidenav">
+            
+                <li>
+<a href="#core">Core</a>
+    
+    <ul class="nav">
+  
+  <li><a href="#core-z">$()</a></li>
+  
+  <li><a href="#core-z-camelCase">$.camelCase</a></li>
+  
+  <li><a href="#core-z-contains">$.contains</a></li>
+  
+  <li><a href="#core-z-each">$.each</a></li>
+  
+  <li><a href="#core-z-extend">$.extend</a></li>
+  
+  <li><a href="#core-z-fn">$.fn</a></li>
+  
+  <li><a href="#core-z-grep">$.grep</a></li>
+  
+  <li><a href="#core-z-inArray">$.inArray</a></li>
+  
+  <li><a href="#core-z-isArray">$.isArray</a></li>
+  
+  <li><a href="#core-z-isFunction">$.isFunction</a></li>
+  
+  <li><a href="#core-z-isPlainObject">$.isPlainObject</a></li>
+  
+  <li><a href="#core-z-isWindow">$.isWindow</a></li>
+  
+  <li><a href="#core-z-map">$.map</a></li>
+  
+  <li><a href="#core-z-parseJSON">$.parseJSON</a></li>
+  
+  <li><a href="#core-z-trim">$.trim</a></li>
+  
+  <li><a href="#core-z-type">$.type</a></li>
+  
+  <li><a href="#core-add">add</a></li>
+  
+  <li><a href="#core-addClass">addClass</a></li>
+  
+  <li><a href="#core-after">after</a></li>
+  
+  <li><a href="#core-append">append</a></li>
+  
+  <li><a href="#core-appendTo">appendTo</a></li>
+  
+  <li><a href="#core-attr">attr</a></li>
+  
+  <li><a href="#core-before">before</a></li>
+  
+  <li><a href="#core-children">children</a></li>
+  
+  <li><a href="#core-clone">clone</a></li>
+  
+  <li><a href="#core-closest">closest</a></li>
+  
+  <li><a href="#core-concat">concat</a></li>
+  
+  <li><a href="#core-contents">contents</a></li>
+  
+  <li><a href="#core-css">css</a></li>
+  
+  <li><a href="#core-data">data</a></li>
+  
+  <li><a href="#core-each">each</a></li>
+  
+  <li><a href="#core-empty">empty</a></li>
+  
+  <li><a href="#core-eq">eq</a></li>
+  
+  <li><a href="#core-filter">filter</a></li>
+  
+  <li><a href="#core-find">find</a></li>
+  
+  <li><a href="#core-first">first</a></li>
+  
+  <li><a href="#core-forEach">forEach</a></li>
+  
+  <li><a href="#core-get">get</a></li>
+  
+  <li><a href="#core-has">has</a></li>
+  
+  <li><a href="#core-hasClass">hasClass</a></li>
+  
+  <li><a href="#core-height">height</a></li>
+  
+  <li><a href="#core-hide">hide</a></li>
+  
+  <li><a href="#core-html">html</a></li>
+  
+  <li><a href="#core-index">index</a></li>
+  
+  <li><a href="#core-indexOf">indexOf</a></li>
+  
+  <li><a href="#core-insertAfter">insertAfter</a></li>
+  
+  <li><a href="#core-insertAfter">insertBefore</a></li>
+  
+  <li><a href="#core-is">is</a></li>
+  
+  <li><a href="#core-last">last</a></li>
+  
+  <li><a href="#core-map">map</a></li>
+  
+  <li><a href="#core-next">next</a></li>
+  
+  <li><a href="#core-not">not</a></li>
+  
+  <li><a href="#core-offset">offset</a></li>
+  
+  <li><a href="#core-offsetParent">offsetParent</a></li>
+  
+  <li><a href="#core-offsetParent">parent</a></li>
+  
+  <li><a href="#core-parents">parents</a></li>
+  
+  <li><a href="#core-pluck">pluck</a></li>
+  
+  <li><a href="#core-position">position</a></li>
+  
+  <li><a href="#core-prepend">prepend</a></li>
+  
+  <li><a href="#core-prependTo">prependTo</a></li>
+  
+  <li><a href="#core-prev">prev</a></li>
+  
+  <li><a href="#core-prop">prop</a></li>
+  
+  <li><a href="#core-push">push</a></li>
+  
+  <li><a href="#core-ready">ready</a></li>
+  
+  <li><a href="#core-reduce">reduce</a></li>
+  
+  <li><a href="#core-remove">remove</a></li>
+  
+  <li><a href="#core-removeAttr">removeAttr</a></li>
+  
+  <li><a href="#core-removeClass">removeClass</a></li>
+  
+  <li><a href="#core-replaceWith">replaceWith</a></li>
+  
+  <li><a href="#core-scrollLeft">scrollLeft</a></li>
+  
+  <li><a href="#core-scrollTop">scrollTop</a></li>
+  
+  <li><a href="#core-show">show</a></li>
+  
+  <li><a href="#core-siblings">siblings</a></li>
+  
+  <li><a href="#core-size">size</a></li>
+  
+  <li><a href="#core-slice">slice</a></li>
+  
+  <li><a href="#core-text">text</a></li>
+  
+  <li><a href="#core-toggle">toggle</a></li>
+  
+  <li><a href="#core-toggleClass">toggleClass</a></li>
+  
+  <li><a href="#core-unwrap">unwrap</a></li>
+  
+  <li><a href="#core-val">val</a></li>
+  
+  <li><a href="#core-width">width</a></li>
+  
+  <li><a href="#core-wrap">wrap</a></li>
+  
+  <li><a href="#core-wrapAll">wrapAll</a></li>
+  
+  <li><a href="#core-wrapInner">wrapInner</a></li>
+  
+</ul>
+
+</li>
+<li>
+    <a  href="#detect">Detect</a>
+    
+    <ul class="nav">
+  
+  <li><a href="#detect_module">Detect module</a></li>
+  
+</ul>
+
+</li>
+<li>
+    <a href="#event">Event</a>
+    
+    <ul class="nav">
+  
+  <li><a href="#event">$.Event</a></li>
+  
+  <li><a href="#proxy">$.proxy</a></li>
+  
+  <li><a href="#bind">bind</a></li>
+  
+  <li><a href="#delegate">delegate</a></li>
+  
+  <li><a href="#die">die</a></li>
+  
+  <li><a href="#isDefaultPrevented">event.isDefaultPrevented</a></li>
+  
+  <li><a href="#">Event.isimmediatepropagationstopped</a></li>
+  
+  <li><a href="#isPropagationStopped">event.isPropagationStopped</a></li>
+  
+  <li><a href="#live">live</a></li>
+  
+  <li><a href="#false">off</a></li>
+  
+  <li><a href="#true">on</a></li>
+  
+  <li><a href="#one">one</a></li>
+  
+  <li><a href="#trigger">trigger</a></li>
+  
+  <li><a href="#triggerHandler">triggerHandler</a></li>
+  
+  <li><a href="#unbind">unbind</a></li>
+  
+  <li><a href="#undelegate">undelegate</a></li>
+  
+</ul>
+
+</li>
+<li>
+    <a href="#ajax">Ajax</a>
+    
+    <ul class="nav">
+  
+  <li><a href="#core-z-ajax">$.ajax</a></li>
+  
+  <li><a href="#core-ajax-jsonp">$.ajaxJSONP</a></li>
+  
+  <li><a href="#core-ajax-settings">$.ajaxSettings</a></li>
+  
+  <li><a href="#core-z-get">$.get</a></li>
+  
+  <li><a href="#core-z-getJSON">$.getJSON</a></li>
+  
+  <li><a href="#core-z-param">$.param</a></li>
+  
+  <li><a href="#core-z-post">$.post</a></li>
+  
+  <li><a href="#core-ajax-load">load</a></li>
+  
+</ul>
+
+</li>
+<li>
+    <a href="#form">Form</a>
+    
+    <ul class="nav">
+  
+  <li><a href="#form-serialize">serialize</a></li>
+  
+  <li><a href="#form-serializeArray">serializeArray</a></li>
+  
+  <li><a href="#form-submit">submit</a></li>
+  
+</ul>
+
+</li>
+<li>
+    <a href="#fx">Effects</a>
+    
+    <ul class="nav">
+  
+  <li><a href="#z-fx">$.fx</a></li>
+  
+  <li><a href="#fx-animate">animate</a></li>
+  
+</ul>
+
+</li>
+
+            
+          </ul>
+          <a class="back-to-top" href="#top">
+            返回顶部
+          </a>
+        </nav>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Footer
+================================================== -->
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="bs-docs-social">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=scm-Q&amp;repo=eui&amp;type=watch&amp;count=true" width="100" height="20"></iframe>
+      </li>
+    </ul>
+</div>
+
+
+  <p>本项目源码受
+    <a href="https://github.com/scm-Q/eui/blob/master/LICENSE" data-ignore="push">MIT</a>
+    开源协议保护，文档受
+    <a href="https://github.com/scm-Q/eui/blob/master/docs/LICENSE" data-ignore="push">CC BY 3.0</a>
+    开源协议保护.
+  </p>
+
+  <ul class="bs-docs-footer-links text-muted">
+    <li>当前版本： 1.1.6</li>
+    <li>&middot;</li>
+    <li><a href="https://github.com/scm-Q/eui/issues" data-ignore="push">Issues</a></li>
+    <li>&middot;</li>
+    <li><a href="https://github.com/scm-Q/eui/releases" data-ignore="push">Releases</a></li>
+  </ul>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../dist/js/jquery-2.1.1.js"></script>
+
+
+<script src="../dist/js/bootstrap.js"></script>
+
+
+
+
+<script src="../assets/js/vendor/holder.js"></script>
+
+<script src="../assets/js/vendor/ZeroClipboard.min.js"></script>
+
+<script src="../assets/js/vendor/anchor.js"></script>
+
+<script src="../assets/js/src/application.js"></script>
+
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!---->
+<!--<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>-->
+
+<!-- Analytics
+================================================== -->
+<!--<script>
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>-->
+
+
+  </body>
+</html>

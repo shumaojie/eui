@@ -1,0 +1,21 @@
+<p>读取或设置DOM元素的css属性。当value参数不存在的时候，返回对象集合中第一个元素的css属性。
+当value参数存在时，设置对象集合中每一个元素的对应css属性。</p>
+
+<p>多个属性可以通过传递一个属性名组成的数组一次性获取。多个属性可以利用对象键值对的方式进行设置。</p>
+
+<p>当value为空(空字符串，null 或 undefined)，那个css属性将会被移出。当value参数为一个无单位的数字，
+如果该css属性需要单位，“px”将会自动添加到该属性上。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">)</span>          <span class="c1">// read property</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;#369&#39;</span><span class="p">)</span>  <span class="c1">// set property</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background-color&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>      <span class="c1">// remove property</span>
+
+<span class="c1">// set multiple properties:</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span> <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;#8EE&#39;</span><span class="p">,</span> <span class="nx">fontSize</span><span class="o">:</span> <span class="mi">28</span> <span class="p">})</span>
+
+<span class="c1">// read multiple properties:</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">css</span><span class="p">([</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">,</span> <span class="s1">&#39;fontSize&#39;</span><span class="p">])[</span><span class="s1">&#39;fontSize&#39;</span><span class="p">]</span></code></pre></div>
+
+
+

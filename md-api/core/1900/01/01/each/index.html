@@ -1,0 +1,9 @@
+<p>遍历一个对象集合每个元素。在迭代函数中，<code>this</code>关键字指向当前项(作为函数的第二个参数传递)。
+如果迭代函数返回 <code>false</code>，遍历结束。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form input&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;input %d is: %o&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+

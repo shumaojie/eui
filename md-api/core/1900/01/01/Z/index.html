@@ -1,0 +1,45 @@
+<p>通过执行css选择器，包装dom节点，或者通过一个html字符串创建多个元素 来创建一个Zepto集合对象。</p>
+
+<p>Zepto集合是一个类似数组的对象，它具有链式方法来操作它指向的DOM节点，
+除了$(<code>Zepto</code>)对象上的直接方法外(如<code>$.extend</code>)，文档对象中的所有方法都是集合方法。</p>
+
+<p>如果选择器中存在content参数(css选择器，dom，或者Zepto集合对象)，
+那么只在所给的节点背景下进行css选择器；
+这个功能和使用<code>$(context).find(selector)</code>是一样的。</p>
+
+<p>当给定一个html字符串片段来创建一个dom节点时。也可以通过给定一组属性映射来创建节点。
+最快的创建但元素，使用<code>&lt;div&gt;</code> 或 <code>&lt;div/&gt;</code>形式。</p>
+
+<p>当一个函数附加在 <code>DOMContentLoaded</code> 事件的处理流程中。如果页面已经加载完毕，这个方法将会立即被执行。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>  <span class="c1">//=&gt; all DIV elements on the page</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#foo&#39;</span><span class="p">)</span> <span class="c1">//=&gt; element with ID &quot;foo&quot;</span>
+
+<span class="c1">// create element:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;p&gt;Hello&lt;/p&gt;&quot;</span><span class="p">)</span> <span class="c1">//=&gt; the new P element</span>
+<span class="c1">// create element with attributes:</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;p /&gt;&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">text</span><span class="o">:</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span><span class="s2">&quot;greeting&quot;</span><span class="p">,</span> <span class="nx">css</span><span class="o">:</span><span class="p">{</span><span class="nx">color</span><span class="o">:</span><span class="s1">&#39;darkblue&#39;</span><span class="p">}</span> <span class="p">})</span>
+<span class="c1">//=&gt; &lt;p id=greeting style=&quot;color:darkblue&quot;&gt;Hello&lt;/p&gt;</span>
+
+<span class="c1">// execute callback when the page is ready:</span>
+<span class="nx">Zepto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Ready to Zepto!&#39;</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+
+
+<p class=compat>
+  <a href="http://api.jquery.com/category/selectors/jquery-selector-extensions/">jQuery CSS 扩展</a> are not supported.
+ 然而，可选的“selector”模块有限提供了支持几个最常用的伪选择器，而且可以被丢弃，与现有的代码或插件的兼容执行。
+</p>
+
+
+
+
+<p class=compat>
+如果$变量尚未定义，Zepto只设置了全局变量$指向它本身。允许您同时使用的Zepto和有用的遗留代码，
+例如，prototype.js。只要首先加载Prototype，Zepto将不会覆盖Prototype的 <code>$</code>  函数。
+Zepto将始终设置全局变量<code>Zepto</code>指向它本身。
+</p>
+

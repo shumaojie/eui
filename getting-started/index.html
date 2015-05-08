@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="EUI: Build mobile apps with simple HTML, CSS, and JS components.">
+<meta name="author" content="SCM">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<title>
+  
+  起步 &middot; EUI
+  
+</title>
+
+<!-- Google Web Fonts -->
+<!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700%7COpen+Sans:400,300">-->
+
+<!-- Bootstrap core CSS -->
+
+<link href="../dist/css/bootstrap.css" rel="stylesheet">
+
+
+<!-- Mui theme -->
+
+
+<!-- Documentation extras -->
+
+<link href="../assets/css/src/pygments-manni.css" rel="stylesheet">
+<link href="../assets/css/src/anchor.css" rel="stylesheet">
+<link href="../assets/css/src/docs.css" rel="stylesheet">
+
+
+<!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+<![endif]-->
+
+<script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114x114.png">-->
+
+<!--<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36050008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>-->
+
+  </head>
+  <body>
+  <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">EUI</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li  class="active">
+          <a href="../getting-started/">起步</a>
+        </li>
+        <li >
+          <a href="../components/">CSS组件</a>
+        </li>
+        <li >
+        <a href="../javascript/">JavaScript</a>
+        </li>
+        <li >
+          <a href="../api/">API文档</a>
+        </li>
+        <li >
+        <a href="../about/">关于</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">论坛</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Docs page layout -->
+  <div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+      <h1>起步</h1>
+      <p>简要介绍 EUI，以及如何下载、使用，还有基本模版和案例，等等。</p>
+    </div>
+  </div>
+
+  <div class="container bs-docs-container">
+
+    <div class="row">
+      <div class="col-md-9" role="main">
+        <div class="bs-docs-section">
+  <h1 id="download" class="page-header">下载</h1>
+
+  <p class="lead">
+    EUI (当前版本 v1.1.6)
+    提供以下几种方式帮你快速上手，每一种方式针对具有不同技能等级的开发者和不同的使用场景。继续阅读下面的内容，看看哪种方式适合你的需求吧。</p>
+
+  <div class="row bs-downloads">
+    <div class="col-sm-6">
+      <h3 id="download-bootstrap">用于生产环境的EUI </h3>
+      <p>编译并压缩后的 CSS、JavaScript 和字体文件。不包含文档和源码文件。</p>
+      <p>
+        <a href="" class="btn btn-lg btn-outline" role="button" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download compiled');">
+          下载 EUI
+        </a>
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <h3 id="download-source">EUI 源码</h3>
+      <p>Less、JavaScript 和 字体文件的源码，并且带有文档。 <strong>需要 Less 编译器和<a href="#grunt">一些设置工作</a></strong>。 </p>
+      <p>
+        <a href="" class="btn btn-lg btn-outline" role="button" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download source');">下载源码</a>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="bs-docs-section">
+  <h1 id="whats-included" class="page-header">包含的内容</h1>
+
+  <p class="lead">
+      EUI 提供了两种形式的压缩包，在下载下来的压缩包内可以看到以下目录和文件，这些文件按照类别放到了不同的目录内，并且提供了压缩与未压缩两种版本。
+  </p>
+
+  <h2 id="whats-included-precompiled">预编译版</h2>
+  <p>下载压缩包之后，将其解压缩到任意目录即可看到以下（压缩版的）目录结构:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">eui/
+├── css/
+│   ├── eui.css
+│   ├── eui.min.css
+├── js/
+│   ├── eui.js
+│   └── eui.min.js
+└── fonts/
+    ├── eui.ttf</code></pre></div>
+
+  <p>
+      上面展示的就是 EUI 的基本文件结构：预编译文件可以直接使用到任何 app 项目中。
+      我们提供了编译好的 CSS 和 JS (<code>eui.*</code>) 文件，还有经过压缩的 CSS 和 JS (<code>eui.min.*</code>) 文件。
+      同时还提供了 CSS <a href="https://developers.google.com/chrome-developer-tools/docs/css-preprocessors">源码映射表</a>
+      (<code>eui.*.map</code>) ，可以在某些浏览器的开发工具中使用。
+      同时还包含了来自 Glyphicons 的图标字体，在附带的 EUI 主题中使用到了这些图标。
+
+  </p>
+
+  <h2 id="whats-included-source">EUI源码</h2>
+  <p>
+      EUI 源码包含了预先编译的 CSS、JavaScript 和图标字体文件，并且还有 LESS、JavaScript 和文档的源码。具体来说，主要文件组织结构如下：
+      </p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">bootstrap/
+├── less/
+├── js/
+├── fonts/
+├── dist/
+│   ├── css/
+│   ├── js/
+│   └── fonts/
+└── docs/
+    └── examples/</code></pre></div>
+  <p>
+      <code>less/</code>, <code>js/</code>, and <code>fonts/</code> 目录分别包含了 CSS、JS 和字体图标的源码。
+      <code>dist/</code> 目录包含了上面所说的预编译 EUI 包内的所有文件。
+      The <code>docs/</code>包含了所有文档的源码文件，<code>
+      examples/</code>  目录是 Bootstrap 官方提供的实例工程。除了这些，其他文件还包含 Bootstrap 安装包的定义文件、许可证文件和编译脚本等。</p>
+</div>
+
+<div class="bs-docs-section">
+  <h1 id="grunt" class="page-header">Compiling CSS and JavaScript</h1>
+
+  <p class="lead">Bootstrap uses <a href="http://gruntjs.com">Grunt</a> for its build system, with convenient methods for working with the framework. It's how we compile our code, run tests, and more.</p>
+
+  <h2 id="grunt-installing">Installing Grunt</h2>
+  <p>To install Grunt, you must <strong>first <a href="http://nodejs.org/download/">download and install node.js</a></strong> (which includes npm). npm stands for <a href="https://www.npmjs.com/">node packaged modules</a> and is a way to manage development dependencies through node.js.</p>
+
+  Then, from the command line:
+  <ol>
+    <li>Install <code>grunt-cli</code> globally with <code>npm install -g grunt-cli</code>.</li>
+    <li>Navigate to the root <code>/bootstrap/</code> directory, then run <code>npm install</code>. npm will look at the <a href="https://github.com/twbs/bootstrap/blob/master/package.json"><code>package.json</code></a> file and automatically install the necessary local dependencies listed there.</li>
+  </ol>
+
+  <p>When completed, you'll be able to run the various Grunt commands provided from the command line.</p>
+
+  <h2 id="grunt-commands">Available Grunt commands</h2>
+  <h3><code>grunt dist</code> (Just compile CSS and JavaScript)</h3>
+  <p>Regenerates the <code>/dist/</code> directory with compiled and minified CSS and JavaScript files. As a Bootstrap user, this is normally the command you want.</p>
+
+  <h3><code>grunt watch</code> (Watch)</h3>
+  <p>Watches the Less source files and automatically recompiles them to CSS whenever you save a change.</p>
+
+  <h3><code>grunt test</code> (Run tests)</h3>
+  <p>Runs <a href="http://jshint.com">JSHint</a> and runs the <a href="http://qunitjs.com">QUnit</a> tests headlessly in <a href="http://phantomjs.org">PhantomJS</a>.</p>
+
+  <h3><code>grunt docs</code> (Build &amp; test the docs assets)</h3>
+  <p>Builds and tests CSS, JavaScript, and other assets which are used when running the documentation locally via <code>jekyll serve</code>.</p>
+
+  <h3><code>grunt</code> (Build absolutely everything and run tests)</h3>
+  <p>Compiles and minifies CSS and JavaScript, builds the documentation website, runs the HTML5 validator against the docs, regenerates the Customizer assets, and more. Requires <a href="http://jekyllrb.com/docs/installation/">Jekyll</a>. Usually only necessary if you're hacking on Bootstrap itself.</p>
+
+  <h2 id="grunt-troubleshooting">Troubleshooting</h2>
+  <p>Should you encounter problems with installing dependencies or running Grunt commands, first delete the <code>/node_modules/</code> directory generated by npm. Then, rerun <code>npm install</code>.</p>
+</div>
+
+
+      </div>
+      
+      <div class="col-md-3" role="complementary">
+        <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+          <ul class="nav bs-docs-sidenav">
+            
+                <li>
+  <a href="#download">下载</a>
+</li>
+<li>
+  <a href="#whats-included">包含的内容</a>
+  <ul class="nav">
+    <li><a href="#whats-included-precompiled">预编译版</a></li>
+    <li><a href="#whats-included-source">EUI 源码</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#grunt">编译CSS和JavaScript文件</a>
+  <ul class="nav">
+    <li><a href="#grunt-installing">安装Gulp</a></li>
+    <li><a href="#grunt-commands">可用的Gulp命令</a></li>
+    <li><a href="#grunt-troubleshooting">基本模板</a></li>
+  </ul>
+</li>
+
+            
+          </ul>
+          <a class="back-to-top" href="#top">
+            返回顶部
+          </a>
+        </nav>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Footer
+================================================== -->
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="bs-docs-social">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=scm-Q&amp;repo=eui&amp;type=watch&amp;count=true" width="100" height="20"></iframe>
+      </li>
+    </ul>
+</div>
+
+
+  <p>本项目源码受
+    <a href="https://github.com/scm-Q/eui/blob/master/LICENSE" data-ignore="push">MIT</a>
+    开源协议保护，文档受
+    <a href="https://github.com/scm-Q/eui/blob/master/docs/LICENSE" data-ignore="push">CC BY 3.0</a>
+    开源协议保护.
+  </p>
+
+  <ul class="bs-docs-footer-links text-muted">
+    <li>当前版本： 1.1.6</li>
+    <li>&middot;</li>
+    <li><a href="https://github.com/scm-Q/eui/issues" data-ignore="push">Issues</a></li>
+    <li>&middot;</li>
+    <li><a href="https://github.com/scm-Q/eui/releases" data-ignore="push">Releases</a></li>
+  </ul>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../dist/js/jquery-2.1.1.js"></script>
+
+
+<script src="../dist/js/bootstrap.js"></script>
+
+
+
+
+<script src="../assets/js/vendor/holder.js"></script>
+
+<script src="../assets/js/vendor/ZeroClipboard.min.js"></script>
+
+<script src="../assets/js/vendor/anchor.js"></script>
+
+<script src="../assets/js/src/application.js"></script>
+
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!---->
+<!--<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>-->
+
+<!-- Analytics
+================================================== -->
+<!--<script>
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>-->
+
+
+  </body>
+</html>

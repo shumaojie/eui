@@ -1,0 +1,16 @@
+<p>获取对象集合中每一个元素的属性值。返回值为 <code>null</code>或<code>undefined</code>值得过滤掉。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body &gt; *&#39;</span><span class="p">).</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;nodeName&#39;</span><span class="p">)</span> <span class="c1">// =&gt; [&quot;DIV&quot;, &quot;SCRIPT&quot;]</span>
+
+<span class="c1">// implementation of Zepto&#39;s `next` method</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> 
+  <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;nextElementSibling&#39;</span><span class="p">))</span> 
+<span class="p">}</span></code></pre></div>
+
+
+
+
+<p class=compat>
+  这是一个Zepto的方法，不是jquery的api
+</p>
+

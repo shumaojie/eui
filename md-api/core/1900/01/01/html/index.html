@@ -1,0 +1,11 @@
+<p>获取或设置对象集合中元素的HTML内容。当没有给定content参数时，返回对象集合中第一个元素的innerHtml。
+当给定content参数时，用其替换对象集合中每个元素的内容。content可以是<a href="#append">append</a>中描述的所有类型。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// autolink everything that looks like a Twitter username</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.comment p&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="nx">oldHtml</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">oldHtml</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(^|\W)@(\w{1,15})/g</span><span class="p">,</span>
+    <span class="s1">&#39;$1@&lt;a href=&quot;http://twitter.com/$2&quot;&gt;$2&lt;/a&gt;&#39;</span><span class="p">)</span>
+<span class="p">})</span></code></pre></div>
+
+
+

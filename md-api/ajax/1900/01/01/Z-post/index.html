@@ -1,0 +1,15 @@
+<p>执行Ajax POST请求。这是一个  <a href="#$.ajax">$.ajax</a> 的简写方式。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">sample</span><span class="o">:</span> <span class="s1">&#39;payload&#39;</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+  <span class="c1">// process response</span>
+<span class="p">})</span></code></pre></div>
+
+
+<p><code>data</code> can also be a string:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#some_form&#39;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+  <span class="c1">// ...</span>
+<span class="p">})</span></code></pre></div>
+
+
+

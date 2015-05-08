@@ -1,0 +1,19 @@
+<p>读取或设置dom的属性。如果没有给定value参数，则读取对象集合中第一个元素的属性值。
+当给定了value参数。则设置对象集合中所有元素的该属性的值。当value参数为null，
+那么这个属性将被移除(类似<a href="#removeAttr">removeAttr</a>)，多个属性可以通过对象键值对的方式进行设置。</p>
+
+<p>要读取DOM的属性如 <code>checked</code>和<code>selected</code>, 使用<a href="#prop">prop</a>。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">)</span>             <span class="c1">//=&gt; read value</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="s1">&#39;/create&#39;</span><span class="p">)</span>  <span class="c1">//=&gt; set value</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>       <span class="c1">//=&gt; remove attribute</span>
+
+<span class="c1">// multiple attributes:</span>
+<span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">({</span>
+  <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;/create&#39;</span><span class="p">,</span>
+  <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;post&#39;</span>
+<span class="p">})</span></code></pre></div>
+
+
+

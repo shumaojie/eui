@@ -1,0 +1,9 @@
+<p>从当前对象集合中获取所有元素或单个元素。当index参数不存在的时，以普通数组的方式返回所有的元素。
+当指定index时，只返回该置的元素。这点与<a href="#eq">eq</a>不同，该方法返回的是DOM节点，<em>不是</em> Zepto对象集合。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">)</span>
+<span class="nx">elements</span><span class="p">.</span><span class="nx">get</span><span class="p">()</span>   <span class="c1">//=&gt; get all headings as an array</span>
+<span class="nx">elements</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">//=&gt; get first heading node</span></code></pre></div>
+
+
+

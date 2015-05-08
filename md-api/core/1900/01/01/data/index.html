@@ -1,0 +1,17 @@
+<p>读取或写入dom的 <code>data-*</code> 属性。行为有点像 <a href="#attr">attr</a>，但是属性名称前面加上 <code>data-</code>。</p>
+
+<p>当读取属性值时，会有下列转换：
+<span class=version>v1.0+</span></p>
+
+<ul>
+<li>&ldquo;true&rdquo;, &ldquo;false&rdquo;, and &ldquo;null&rdquo; 被转换为相应的类型；</li>
+<li>数字值转换为实际的数字类型；;</li>
+<li>JSON值将会被解析，如果它是有效的JSON;</li>
+<li>其它的一切作为字符串返回。.</li>
+</ul>
+
+
+<p class=compat>
+ Zepto 基本实现`data()`只能存储字符串。如果你要存储任意对象，请引入可选的“data”模块到你构建的Zepto中。
+</p>
+

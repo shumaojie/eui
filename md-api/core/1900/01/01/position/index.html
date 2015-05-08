@@ -1,0 +1,16 @@
+<p>获取对象集合中第一个元素的位置。相对于 <a href="#offsetParent">offsetParent</a>。
+当绝对定位的一个元素靠近另一个元素的时候，这个方法是有用的。</p>
+
+<p>返回对象属性包括 : <code>top</code>, <code>left</code>.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">position</span><span class="p">()</span>
+
+<span class="c1">// position a tooltip relative to the element</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#tooltip&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span>
+  <span class="nx">position</span><span class="o">:</span> <span class="s1">&#39;absolute&#39;</span><span class="p">,</span>
+  <span class="nx">top</span><span class="o">:</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="nx">left</span><span class="o">:</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">left</span>
+<span class="p">})</span></code></pre></div>
+
+
+

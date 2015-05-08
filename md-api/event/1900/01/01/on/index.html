@@ -1,0 +1,27 @@
+<p>添加事件处理程序到对象集合中得元素上。多个事件可以通过空格的字符串方式添加，
+或者以事件类型为键、以函数为值的对象 方式。如果给定css选择器，
+当事件在匹配该选择器的元素上发起时，事件才会被触发（注：即事件委派，或者说事件代理）。</p>
+
+<p>如果给定<code>data</code>参数，这个值将在事件处理程序执行期间被作为有用的 <code>event.data</code> 属性。</p>
+
+<p>事件处理程序在添加该处理程序的元素、或在给定选择器情况下匹配该选择器的元素的上下文中执行
+(注：this指向触发事件的元素)。 当一个事件处理程序返回<code>false</code>，
+<code>preventDefault()</code> 和 <code>stopPropagation()</code>被当前事件调用的情况下，  将防止默认浏览器操作，如链接。</p>
+
+<p>如果<code>false</code>在回调函数的位置上作为参数传递给这个方法， 它相当于传递一个函数，
+这个函数直接返回false。（注：即将 false 当作 <code>function(e){ ... }</code> 的参数，
+作为 <code>function(){ return false; }</code> 的简写形式，例如： <code>$("a.disabled").on("click", false);
+这相当于$("a.disabled").on("click", function(){ return false; } );）</code></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#content&#39;</span><span class="p">)</span>
+<span class="c1">// observe all clicks inside #content:</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="c1">// observe clicks inside navigation links in #content</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;nav a&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="c1">// all clicks inside links in the document</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="p">...</span> <span class="p">})</span>
+<span class="c1">// disable following any navigation link on the page</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;nav a&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span></code></pre></div>
+
+
+
