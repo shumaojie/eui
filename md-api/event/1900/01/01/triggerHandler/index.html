@@ -1,7 +1,0 @@
-<p>像 <a href="#trigger">trigger</a>，它只在当前元素上触发事件，但不冒泡。</p>
-
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">).</span><span class="nx">triggerHandler</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">);</span>
-<span class="c1">// 此时input上的focus事件触发，但是input不会获取焦点</span>
-<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">);</span>
-<span class="c1">// 此时input上的focus事件触发，input获取焦点</span></code></pre></div>
-

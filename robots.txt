@@ -1,6 +1,0 @@
-# http://scm-q.github.io/eui/
-
-# Allow crawling of all content
-User-agent: *
-Disallow:
-Sitemap: http://scm-q.github.io/eui/sitemap.xml

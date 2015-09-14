@@ -1,9 +1,0 @@
-<p>通过GET Ajax载入远程 HTML 内容代码并插入至 当前的集合 中。另外，一个css选择器可以在url中指定，
-像这样，可以使用匹配selector选择器的HTML内容来更新集合。</p>
-
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#some_element&#39;</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;/foo.html #bar&#39;</span><span class="p">)</span></code></pre></div>
-
-
-<p>如果没有给定CSS选择器，将使用完整的返回文本。</p>
-
-<p>请注意，在没有选择器的情况下，任何javascript块都会执行。如果带上选择器，匹配选择器内的script将会被删除。</p>

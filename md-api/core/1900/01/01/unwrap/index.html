@@ -1,8 +1,0 @@
-<p>移除集合中每个元素的直接父节点，并把他们的子元素保留在原来的位置。
- 基本上，这种方法删除上一的祖先元素，同时保持DOM中的当前元素。</p>
-
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div id=wrapper&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">)</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wrapper p&#39;</span><span class="p">).</span><span class="nx">unwrap</span><span class="p">().</span><span class="nx">parents</span><span class="p">()</span>  <span class="c1">//=&gt; [&lt;body&gt;, &lt;html&gt;]</span></code></pre></div>
-
-
-
