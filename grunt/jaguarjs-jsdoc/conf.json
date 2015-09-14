@@ -10,7 +10,7 @@
 			"outputSourceFiles" : true
 		},
 		"applicationName": "Eui.js",
-	    "duoshuo" : "eui-gh-pages",
+	    "duoshuo" : "api-eui",
 	    "url" : "http://scm-q.github.io/eui/",
 		"googleAnalytics": "",
 		"openGraph": {
