@@ -1,0 +1,35 @@
+{
+	"tags": {
+		"allowUnknownTags" : true
+	},
+	"plugins": ["plugins/markdown"],
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true,
+		"default": {
+			"outputSourceFiles" : true
+		},
+		"applicationName": "Eui.js",
+	    "duoshuo" : "eui-gh-pages",
+	    "url" : "http://scm-q.github.io/eui/",
+		"googleAnalytics": "",
+		"openGraph": {
+			"title": "",
+			"type": "website",
+			"image": "",
+			"site_name": "",
+			"url": ""
+		},
+		"meta": {
+			"title": "Eui Framework",
+			"description": "Eui 移动端APP快速开发框架",
+			"keyword": "Html5、JS、APP、SASS"
+		},
+		"linenums": true
+	},
+	"markdown": {
+		"parser": "gfm",
+		"hardwrap": true,
+		"tags": ["examples"]
+	}
+}

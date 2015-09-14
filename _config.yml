@@ -1,0 +1,25 @@
+# Dependencies
+markdown:    kramdown
+#rdiscount:   { extensions: [smart] }
+highlighter: rouge
+
+# Permalinks
+permalink:    pretty
+
+# Server
+source:       docs
+destination:      _gh_pages
+port:         4000
+#baseurl : http://192.168.10.127/docs/eui
+url:          http://scm-q.github.io/eui
+#github : false
+
+# Meta data
+name:         EUI
+authors:      SCM
+current_version : 1.1.3
+repo :         http://192.168.10.127/docs/eui
+api_repo :    http://192.168.10.127/docs/euiapi
+blog : http://192.168.10.127/bbs/upload/forum.php
+description:  Build mobile apps with simple HTML, CSS, and JS components.
+

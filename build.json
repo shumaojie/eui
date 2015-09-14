@@ -1,0 +1,111 @@
+{
+    "core" : {
+        "basePath" : "js",
+        "modules" : [
+            "eui",
+            "event",
+            "eui.ajax",
+            "form",
+            "detect",
+            "fx",
+            "fx_methods",
+            "data",
+            "callbacks",
+            "deferred",
+            "selector",
+            "stack",
+            "more",
+            "namespace",
+            "target",
+            "supports"
+        ]
+    },
+    "utils" : {
+        "basePath" : "js/util",
+        "modules" : [
+            "string",
+            "format",
+            "number",
+            "array",
+            "function",
+            "object",
+            "date",
+            "json",
+            "hashmap"
+        ]
+    },
+    "fixeds" : {
+      "basePath" : "js/fixed",
+      "modules" : [
+        "eui.fixed",
+        "eui.fixed.classlist",
+        "eui.fixed.animation",
+        "eui.fixed.fastclick",
+        "eui.fixed.keyboard"
+      ]
+    },
+    "gestures" : {
+      "basePath" : "js/gesture",
+      "modules" : [
+        "eui.gestures",
+        "eui.gestures.flick",
+        "eui.gestures.swipe",
+        "eui.gestures.drag",
+        "eui.gestures.tap",
+        "eui.gestures.longtap",
+        "eui.gestures.hold",
+        "eui.gestures.pinch"
+      ]
+    },
+    "inits" : {
+        "basePath" : "js/init",
+        "modules" : [
+           "eui.init",
+           "eui.init.5+",
+           "eui.back",
+           "eui.back.5+",
+           "eui.init.pullrefresh",
+           "eui.ajax.5+"
+        ]
+    },
+    "components" : {
+        "basePath" : "js/component",
+        "modules" : [
+            "eui.layout",
+            "eui.animation",
+            "eui.class",
+            "eui.pullRefresh",
+            "ui/eui.class.scroll",
+            "ui/eui.class.scroll.pullrefresh",
+            "ui/eui.class.scroll.slider",
+            "pullrefresh.5+",
+            "ui/eui.offcanvas",
+            "js/actions",
+            "js/modals",
+            "js/popovers",
+            "ui/segmented-controllers",
+            "ui/switches",
+            "ui/tableviews",
+            "ui/eui.number",
+            "ui/input.plugin"
+        ]
+    },
+    "dialogs" : {
+        "basePath" : "js/dialog",
+        "modules" : [
+            "eui.dialog.alert",
+            "eui.dialog.confirm",
+            "eui.dialog.prompt",
+            "eui.dialog.toast"
+        ]
+    },
+    "extensions" : {
+        "basePath" : "js/extensions",
+        "modules" : [
+            "extra",
+            "comm",
+            "storage",
+            "template"
+        ]
+    }
+}
