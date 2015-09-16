@@ -1,7 +1,7 @@
 {
   "name": "eui",
   "description": "Build mobile apps with simple HTML, CSS, and JS components.",
-  "version": "1.1.3",
+  "version": "1.1.0",
   "namespace": "mui",
   "modules" : [
       "core","utils","fixeds","gestures","inits","components","dialogs","extensions"
@@ -14,15 +14,15 @@
     "mobile",
     "zepto"
   ],
-  "homepage": "http://www.erayt.com",
+  "homepage": "http://scm-q.github.io/eui/",
   "author": "SCM",
-  "repo": "http://192.168.10.127/docs/eui",
+  "repo": "https://github.com/scm-Q/eui",
   "repository": {
     "type": "git",
-    "url": "git://gitolite@xfunds:eui.git"
+    "url": "https://github.com/scm-Q/eui.git"
   },
   "bugs": {
-    "url": "http://192.168.10.127/bbs/upload/forum.php"
+    "url": "https://github.com/scm-Q/eui/issues"
   },
   "licenses": [
     {

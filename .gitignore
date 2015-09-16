@@ -39,7 +39,6 @@ bower_components
 node_modules
 download
 apidoc
-dist
 
 sass/.csscomb.json
 sass/.csslintrc

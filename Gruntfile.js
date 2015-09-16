@@ -380,7 +380,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('dist-css', ['sass', 'csscomb', 'cssmin:core', 'clean:sourceMap']);
 	grunt.registerTask('dist-js', ['concat', 'build-namespace', 'uglify:core']);
-	grunt.registerTask('dist', ['clean:apidoc','clean:dist', 'dist-css', 'dist-js', 'copy']);
+	grunt.registerTask('dist', ['clean:apidoc','clean:dist', 'dist-css', 'dist-js','copy:fonts']);
 
 	// Default task.
 	grunt.registerTask('default', ['clean','test-js']);
