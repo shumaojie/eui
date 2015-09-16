@@ -13,6 +13,7 @@
 	    "duoshuo" : "api-eui",
 	    "url" : "http://scm-q.github.io/eui/",
 		"googleAnalytics": "",
+	    "baiduAnalytics" : "24ac9004f1a0fd3fd56ebfe3ce166d2b",
 		"openGraph": {
 			"title": "",
 			"type": "website",

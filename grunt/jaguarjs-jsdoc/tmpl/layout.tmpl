@@ -46,6 +46,18 @@
       })();
     </script>
     <?js } ?>
+
+    <?js if (env.conf.templates.baiduAnalytics) { ?>
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+                  var hm = document.createElement("script");
+                  hm.src = "//hm.baidu.com/hm.js?" + config.baiduAnalytics;
+                  var s = document.getElementsByTagName("script")[0];
+                  s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        <?js } ?>
 </head>
 <body>
 <div id="wrap" class="clearfix">
